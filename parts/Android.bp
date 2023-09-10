@@ -1,5 +1,5 @@
-//
-// Copyright (C) 2017-2020 The LineageOS Project
+// Copyright (C) 2017-2021 The LineageOS Project
+//           (C) 2023 Paranoid Android
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -15,7 +15,9 @@ android_app {
     privileged: true,
 
     static_libs: [
+        "androidx.core_core",
         "org.lineageos.settings.resources",
+        "SettingsLib",
     ],
 
     optimize: {
