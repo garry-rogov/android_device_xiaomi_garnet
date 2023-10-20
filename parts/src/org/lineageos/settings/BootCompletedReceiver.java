@@ -19,7 +19,7 @@ import org.lineageos.settings.dolby.DolbyUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
     private static final boolean DEBUG = false;
-    private static final String TAG = "XiaomiParts";
+    private static final String TAG = "XiaomiParts-BCR";
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -32,6 +32,11 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
         // Dolby Atmos
         DolbyUtils.getInstance(context).onBootCompleted();
+
+        Log.i(TAG, "Boot completed");
+
+        // Dolby Atmos
+        DolbyUtils.getInstance(context);     
 
         // Refresh Rate
         RefreshUtils.initialize(context);
