@@ -84,6 +84,15 @@
 	    <!--Spatial Audio-->
         <library name="spatializer" path="libspatialaudio.so"/>
 	    <!--Spatial Audio-->
+        <!--DOLBY DAP-->
+        <library name="dap" path="libhwdap.so"/>
+        <!--DOLBY END-->
+        <!--DOLBY GAME-->
+        <library name="gamedap" path="libswgamedap.so"/>
+        <!--DOLBY END-->
+        <!--DOLBY VQE-->
+        <library name="vqe" path="libswvqe.so"/>
+        <!--DOLBY END-->
     </libraries>
     <effects>
         <effect name="gamedap" library="gamedap" uuid="3783c334-d3a0-4d13-874f-0032e5fb80e2"/>
@@ -139,6 +148,15 @@
 	    <!--Spatial Audio-->
         <effect name="spatializer" library="spatializer" uuid="cc4677de-ff72-11eb-9a03-0242ac130003"/>
 	    <!--Spatial Audio-->
+        <!--DOLBY DAP-->
+        <effect name="dap" library="dap" uuid="9d4921da-8225-4f29-aefa-39537a04bcaa"/>
+        <!--DOLBY END-->
+        <!--DOLBY GAME-->
+        <effect name="gamedap" library="gamedap" uuid="3783c334-d3a0-4d13-874f-0032e5fb80e2"/>
+        <!--DOLBY END-->
+        <!--DOLBY VQE-->
+        <effect name="vqe" library="vqe" uuid="64a0f614-7fa4-48b8-b081-d59dc954616f"/>
+        <!--DOLBY END-->
     </effects>
     <postprocess>
         <stream type="system">

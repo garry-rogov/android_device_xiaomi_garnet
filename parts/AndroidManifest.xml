@@ -92,7 +92,7 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>
         </service>
-
+        
         <activity
             android:name=".speaker.ClearSpeakerActivity" 
             android:label="@string/clear_speaker_title">
