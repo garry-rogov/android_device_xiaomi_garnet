@@ -27,23 +27,17 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-        if (DEBUG)
+        Log.d(TAG, "Received intent: " + intent.getAction());
+        if (!intent.getAction().equals(Intent.ACTION_LOCKED_BOOT_COMPLETED)) {
+            return;
+        }
             Log.d(TAG, "Received boot completed intent");
         DozeUtils.onBootCompleted(context);
         ThermalUtils.startService(context);
-        RefreshUtils.startService(context);        
-        DolbyUtils.getInstance(context).onBootCompleted();
-
-        // Dolby Atmos
-        DolbyUtils.getInstance(context).onBootCompleted();
-
-        Log.i(TAG, "Boot completed");
+        RefreshUtils.startService(context);      
 
         // Dolby Atmos
         DolbyUtils.getInstance(context);     
-
-        // Refresh Rate
-        RefreshUtils.initialize(context);
 
         // Override HDR types
         final DisplayManager displayManager = context.getSystemService(DisplayManager.class);

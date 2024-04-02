@@ -33,7 +33,7 @@ import androidx.preference.Preference;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragment;
-import androidx.preference.SwitchPreferenceCompat;
+import androidx.preference.SwitchPreference;
 
 import com.android.settingslib.widget.MainSwitchPreference;
 
@@ -46,9 +46,6 @@ public class DozeSettingsFragment extends PreferenceFragment
 
     private SwitchPreference mAlwaysOnDisplayPreference;
     private ListPreference mDozeBrightnessPreference;
-    private SwitchPreferenceCompat mAlwaysOnDisplayPreference;
-    private SwitchPreferenceCompat mHandwavePreference;
-    private SwitchPreferenceCompat mPocketPreference;
 
     private Handler mHandler = new Handler();
 
@@ -68,7 +65,7 @@ public class DozeSettingsFragment extends PreferenceFragment
         mSwitchBar.addOnSwitchChangeListener(this);
         mSwitchBar.setChecked(dozeEnabled);
 
-        mAlwaysOnDisplayPreference = (SwitchPreferenceCompat) findPreference(DozeUtils.ALWAYS_ON_DISPLAY);
+        mAlwaysOnDisplayPreference = (SwitchPreference) findPreference(DozeUtils.ALWAYS_ON_DISPLAY);
         mAlwaysOnDisplayPreference.setEnabled(dozeEnabled);
         mAlwaysOnDisplayPreference.setChecked(DozeUtils.isAlwaysOnEnabled(getActivity()));
         mAlwaysOnDisplayPreference.setOnPreferenceChangeListener(this);
@@ -79,20 +76,6 @@ public class DozeSettingsFragment extends PreferenceFragment
         mDozeBrightnessPreference.setOnPreferenceChangeListener(this);
 
         // Hide AOD and doze brightness if not supported and set all its dependents otherwise
-        mHandwavePreference = (SwitchPreferenceCompat) findPreference(DozeUtils.GESTURE_HAND_WAVE_KEY);
-        mHandwavePreference.setEnabled(dozeEnabled);
-        mHandwavePreference.setOnPreferenceChangeListener(this);
-
-        mPocketPreference = (SwitchPreferenceCompat) findPreference(DozeUtils.GESTURE_POCKET_KEY);
-        mPocketPreference.setEnabled(dozeEnabled);
-        mPocketPreference.setOnPreferenceChangeListener(this);
-
-        // Hide proximity sensor related features if the device doesn't support them
-        if (!DozeUtils.getProxCheckBeforePulse(getActivity())) {
-            getPreferenceScreen().removePreference(proximitySensorCategory);
-        }
-
-        // Hide AOD if not supported and set all its dependents otherwise
         if (!DozeUtils.alwaysOnDisplayAvailable(getActivity())) {
             getPreferenceScreen().removePreference(mAlwaysOnDisplayPreference);
             getPreferenceScreen().removePreference(mDozeBrightnessPreference);
