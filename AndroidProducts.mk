@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/infinity_garnet.mk
+    $(LOCAL_DIR)/lineage_garnet.mk
 
 COMMON_LUNCH_CHOICES := \
-    infinity_garnet-user \
-    infinity_garnet-userdebug \
-    infinity_garnet-eng
+    lineage_garnet-user \
+    lineage_garnet-userdebug \
+    lineage_garnet-eng
