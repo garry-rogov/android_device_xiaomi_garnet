@@ -386,7 +386,7 @@ $(foreach sku, CN GL, \
         frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(sku)/com.nxp.mifare.xml))
 
 # Overlay
-$(LOCAL_PATH)/overlay-lineage
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 PRODUCT_PACKAGES += \
     ApertureOverlayGarnet \
     CarrierConfigOverlayGarnet \
