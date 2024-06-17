@@ -403,9 +403,6 @@ PRODUCT_PACKAGES += \
     WifiOverlayGarnetRedmi \
     WifiOverlayGarnetRedmiCN
 
-# PixelParts
-include packages/apps/PixelParts/device.mk
-
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service-qti
