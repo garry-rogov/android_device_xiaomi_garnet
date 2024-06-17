@@ -157,10 +157,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.capabilityconfigstore@1.0.vendor
 
-# Device-specific settings
-PRODUCT_PACKAGES += \
-    XiaomiParts
-
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
@@ -180,6 +176,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     hardware/qcom-caf/sm8450/display/config/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml
+
+# Device-specific settings
+PRODUCT_PACKAGES += \
+    XiaomiParts
 
 # Viper
 $(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
