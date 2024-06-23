@@ -21,6 +21,7 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
 
     <!-- Dolby Atmos -->
     <string-array name="dolby_profile_entries">
