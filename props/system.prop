@@ -34,3 +34,9 @@ ro.config.dha_th_rate=2.3
 ro.config.sdha_apps_bg_max=64
 ro.config.sdha_apps_bg_min=8
 
+# Flicker Fix
+ro.surface_flinger.set_display_power_timer_ms=1000
+ro.surface_flinger.set_idle_timer_ms=80
+vendor.display.idle_time=0
+debug.sf.frame_rate_multiple_threshold=60
+
