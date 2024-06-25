@@ -90,8 +90,8 @@ void vendor_load_properties() {
 
         if (sku == "garnet") {
             brand = "Redmi";
-            description = "garnet_global-user 14 UKQ1.231003.002 V816.0.6.0.UNRMIXM release-keys";
-            fingerprint = "Redmi/garnet_global/garnet:14/UKQ1.231003.002/V816.0.6.0.UNRMIXM:user/release-keys";
+            description = "garnet_global-user 14 UKQ1.231003.002 V816.0.9.0.UNRMIXM release-keys";
+            fingerprint = "Redmi/garnet_global/garnet:14/UKQ1.231003.002 V816.0.9.0.UNRMIXM release-keys";
             marketname = "Redmi Note 13 Pro 5G";
             model = "2312DRA50G";
         } else {
