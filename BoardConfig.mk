@@ -151,7 +151,7 @@ TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
 -include vendor/xiaomi/garnet-miuicamera/products/board.mk
 
 # Partitions
--include vendor/lineage/config/BoardConfigReservedSize.mk
+-include vendor/droidx/config/BoardConfigReservedSize.mk
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
 BOARD_DTBOIMG_PARTITION_SIZE := 25165824

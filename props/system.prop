@@ -1,6 +1,11 @@
 # CNE
 persist.vendor.cne.feature=1
 
+# DroidX
+ro.droidx.maintainer=JYR_RC
+ro.droidx.chipset=Snapdragon 7s gen 2
+ro.droidx.display_resolution=6.67" AMOLED 2712x1220
+
 # QTI
 ro.vendor.qti.va_aosp.support=1
 
