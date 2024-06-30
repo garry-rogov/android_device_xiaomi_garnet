@@ -5,9 +5,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/droidx_garnet.mk
-
-COMMON_LUNCH_CHOICES := \
-    droidx_garnet-ap2a-user \
-    droidx_garnet-ap2a-userdebug \
-    droidx_garnet-ap2a-eng
+    $(LOCAL_DIR)/lineage_garnet.mk
