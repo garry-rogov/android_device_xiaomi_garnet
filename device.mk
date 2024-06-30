@@ -136,13 +136,21 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
 PRODUCT_PACKAGES += \
-    libcamera2ndk_vendor
+    libcamera2ndk_vendor \
+    libutilscallstack.vendor:64 \
+    libcamera_metadata.vendor \
+    libexif.vendor \
+    libyuv.vendor
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
+
+# CURL
+PRODUCT_PACKAGES += \
+    libcurl.vendor:64
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -287,6 +295,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.consumerir.xml
 
+# JSON
+PRODUCT_PACKAGES += \
+    libjsoncpp.vendor
+
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.authsecret@1.0.vendor \
@@ -294,6 +306,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libkeymaster_messages.vendor
+
+# LZ4
+PRODUCT_PACKAGES += \
+    liblz4.vendor
 
 # Keymint
 PRODUCT_PACKAGES += \
@@ -319,7 +335,8 @@ PRODUCT_PACKAGES += \
     libOmxCore \
     libcodec2_hidl@1.0.vendor \
     libcodec2_vndk.vendor \
-    libstagefrighthw
+    libstagefrighthw \
+    libstagefright_softomx_plugin.vendor
 
 PRODUCT_PACKAGES += \
     libavservices_minijail \
@@ -480,6 +497,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.servicetracker@1.2.vendor
 
+# SQLite
+PRODUCT_PACKAGES += \
+    libsqlite.vendor:64
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
@@ -531,7 +552,8 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service-qti
+    android.hardware.usb@1.3-service-qti \
+    libusbhost.vendor
 
 PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
@@ -595,6 +617,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.media.audio.common.types-V2-cpp \
     libnl \
+    libpng.vendor \
     libwfdaac_vendor
 
 PRODUCT_BOOT_JARS += \
