@@ -1,6 +1,10 @@
 # CNE
 persist.vendor.cne.feature=1
 
+# Bluetooth
+persist.vendor.btstack.enable.twsplus=true
+persist.vendor.btstack.enable.twsplussho=true
+
 # DroidX
 ro.droidx.maintainer=JYR_RC
 ro.droidx.chipset=Snapdragon 7s gen 2
