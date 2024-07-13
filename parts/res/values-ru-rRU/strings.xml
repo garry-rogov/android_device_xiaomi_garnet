@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2018, 2020-2022 The LineageOS Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+
+    <!-- Thermal profiles -->
+    <string name="thermal_title">Профили производительности</string>
+    <string name="thermal_summary">Настройка профилей приложения для достижения оптимальной производительности</string>
+    <string name="thermal_default">Без оптимизации</string>
+    <string name="thermal_benchmark">Производительность</string>
+    <string name="thermal_browser">Браузер</string>
+    <string name="thermal_camera">Камера</string>
+    <string name="thermal_dialer">Звонки</string>
+    <string name="thermal_gaming">Игры</string>
+    <string name="thermal_streaming">Видео</string>
+
+    <!-- Per-app refresh rate -->
+    <string name="refresh_title">Частота обновления для каждого приложения</string>
+    <string name="refresh_summary">Установите максимальную частоту обновления для приложения</string>
+    <string name="refresh_default">По умолчанию</string>
+    <string name="refresh_standard">60Hz</string>
+    <string name="refresh_extreme">120Hz</string>
+
+    <!-- Doze Strings -->
+    <string name="doze_brightness_low">Низкая яркость</string>
+    <string name="doze_brightness_high">Высокая яркость</string>
+    <string name="doze_brightness_adaptive">Адаптивная яркость</string>
+    <string name="doze_brightness_title">Уровень яркости в режиме энергосбережения</string>
+    <string name="doze_brightness_summary">Уровень яркости экрана в режиме энергосбережения (в % от максимально разрешенной яркости)</string>
+
+    <!-- Clear Speaker -->
+   <string name="clear_speaker_title">Очистка динамика</string>
+   <string name="clear_speaker_summary">Проиграть 30-секундный звук, для очистки динамика</string>
+   <string name="clear_speaker_description">Запустите эту функцию один или два раза, если обнаружили, что динамик слегка загрязнен пылью. Установите максимальную громкость медиа.\Если динамик сильно загрязнен, запустите эту функцию 2-5 раз, при этом трясите устройством с направленным вниз динамиком</string>
+
+</resources>

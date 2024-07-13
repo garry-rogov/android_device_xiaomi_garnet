@@ -19,7 +19,6 @@ import android.view.Display.HdrCapabilities;
 import org.lineageos.settings.doze.DozeUtils;
 import org.lineageos.settings.thermal.ThermalUtils;
 import org.lineageos.settings.refreshrate.RefreshUtils;
-import org.lineageos.settings.dolby.DolbyUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
     private static final boolean DEBUG = false;
@@ -36,13 +35,10 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         ThermalUtils.startService(context);
         RefreshUtils.startService(context);      
 
-        // Dolby Atmos
-        DolbyUtils.getInstance(context);     
-
         // Override HDR types
         final DisplayManager displayManager = context.getSystemService(DisplayManager.class);
         displayManager.overrideHdrTypes(Display.DEFAULT_DISPLAY, new int[]{
-                HdrCapabilities.HDR_TYPE_DOLBY_VISION, HdrCapabilities.HDR_TYPE_HDR10,
+                HdrCapabilities.HDR_TYPE_HDR10,
                 HdrCapabilities.HDR_TYPE_HLG, HdrCapabilities.HDR_TYPE_HDR10_PLUS});
     }
 }

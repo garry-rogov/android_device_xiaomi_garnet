@@ -396,10 +396,6 @@ on post-fs-data
     # Create the directory used by qrtr-lookup
     mkdir /data/vendor/qrtr 0775 system system
 
-    # Dolby
-    mkdir /data/vendor/dolby 0770 media media
-    mkdir /data/vendor/multimedia 0775 system system
-
 service nqnfcinfo /system/vendor/bin/nqnfcinfo
     class late_start
     group nfc

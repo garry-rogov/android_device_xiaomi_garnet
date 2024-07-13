@@ -1,8 +1,0 @@
-# Init-fingerprint service
-type init_fingerprint, domain;
-type init_fingerprint_exec, exec_type, vendor_file_type, file_type;
-
-init_daemon_domain(init_fingerprint)
-
-allow init_fingerprint vendor_toolbox_exec:file execute_no_trans;
-allow init_fingerprint self:capability { chown fowner };

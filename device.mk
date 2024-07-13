@@ -4,6 +4,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Enable updating of APEXes
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
 # Enable virtual A/B OTA
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
@@ -147,22 +150,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
 
-# CURL
-PRODUCT_PACKAGES += \
-    libcurl.vendor:64
-
-# Charger
-PRODUCT_PACKAGES += \
-    libsuspend \
-    charger_res_images
-
-# Clone apps exemption
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sysconfig/preinstalled-packages-platform-xiaomi-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-xiaomi-product.xml
-
 # Configstore
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.capabilityconfigstore@1.0.vendor
+
+# CURL
+PRODUCT_PACKAGES += \
+    libcurl.vendor:64
 
 # Display
 PRODUCT_PACKAGES += \
@@ -184,14 +178,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     hardware/qcom-caf/sm8450/display/config/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml
 
+
+# Dolby
+$(call inherit-product, hardware/dolby/dolby.mk)
+
 # Device-specific settings
 PRODUCT_PACKAGES += \
     XiaomiParts
-
-# Viper
-$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
-
-TARGET_EXCLUDES_AUDIOFX := true
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -230,9 +223,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.opengles.deqp.level-2021-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.opengles.deqp.level.xml
 
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.vulkan.compute-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.compute.xml \
-    frameworks/native/data/etc/android.hardware.vulkan.level-1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level.xml \
-    frameworks/native/data/etc/android.hardware.vulkan.version-1_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version.xml \
+    frameworks/native/data/etc/android.hardware.vulkan.compute-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.compute-0.xml \
+    frameworks/native/data/etc/android.hardware.vulkan.level-1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level-1.xml \
+    frameworks/native/data/etc/android.hardware.vulkan.version-1_1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_1.xml \
     frameworks/native/data/etc/android.software.vulkan.deqp.level-2021-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml
 
 # GPS
@@ -268,8 +261,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger_fw_fstab.qti \
     fstab.qcom \
-    init.hardware.rc \
-    init.fingerprint.sh \
     init.garnet.rc \
     init.qcom.rc \
     init.recovery.qcom.rc \
@@ -298,6 +289,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libjsoncpp.vendor
 
+# Kernel
+PRODUCT_ENABLE_UFFD_GC := false
+
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.authsecret@1.0.vendor \
@@ -305,10 +299,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libkeymaster_messages.vendor
-
-# LZ4
-PRODUCT_PACKAGES += \
-    liblz4.vendor
 
 # Keymint
 PRODUCT_PACKAGES += \
@@ -328,6 +318,10 @@ PRODUCT_PACKAGES += \
 # Lineage Health
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
+
+# LZ4
+PRODUCT_PACKAGES += \
+    liblz4.vendor
 
 # Media
 PRODUCT_PACKAGES += \
@@ -350,9 +344,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(AUDIO_HAL_DIR)/configs/common/codec2/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml \
     $(AUDIO_HAL_DIR)/configs/common/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media/media_codecs_dolby_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_dolby_audio.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
@@ -402,7 +393,6 @@ $(foreach sku, CN GL, \
         frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(sku)/com.nxp.mifare.xml))
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 PRODUCT_PACKAGES += \
     ApertureOverlayGarnet \
     CarrierConfigOverlayGarnet \
@@ -423,18 +413,18 @@ PRODUCT_PACKAGES += \
     WifiOverlayGarnetRedmi \
     WifiOverlayGarnetRedmiCN
 
+# Overlays - RU translations
+DEVICE_PACKAGE_OVERLAYS += \
+    packages/resources/translations/overlay
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+    packages/resources/translations/overlay
+
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service-qti
 
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.perf@2.3.vendor
-
-# Prebuilt packages
-PRODUCT_PACKAGES += \
-    MlkitBarcodeUI \
-    VisionBarcode \
-    QRCameraOverlay
 
 # Protobuf
 PRODUCT_PACKAGES += \
@@ -457,21 +447,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     librmnetctl
 
-# Spatial Audio
+# Remove packages
 PRODUCT_PACKAGES += \
-    libspatialaudio
-
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.sensor.dynamic.head_tracker.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.dynamic.head_tracker.xml
-
-PRODUCT_PROPERTY_OVERRIDES += \
-       audio.spatializer.effect.util_clamp_min=300
-
-PRODUCT_PROPERTY_OVERRIDES += \
-       ro.audio.spatializer_enabled=true \
-       ro.audio.spatializer_transaural_enabled_default=false \
-       persist.vendor.audio.spatializer.speaker_enabled=true \
-       ro.vendor.audio.feature.spatial=7
+    RemovePackages
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -576,15 +554,10 @@ PRODUCT_COPY_FILES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service.xiaomi
+    vendor.qti.hardware.vibrator.service
 
 PRODUCT_COPY_FILES += \
-    hardware/xiaomi/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
-
-# VNDK
-PRODUCT_COPY_FILES += \
-    prebuilts/vndk/v33/arm/arch-arm-armv7-a-neon/shared/vndk-core/libstagefright_foundation.so:$(TARGET_COPY_OUT_VENDOR)/lib/libstagefright_foundation-v33.so \
-    prebuilts/vndk/v33/arm64/arch-arm64-armv8-a/shared/vndk-core/libstagefright_foundation.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libstagefright_foundation-v33.so
+    vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
 # WiFi
 PRODUCT_PACKAGES += \
@@ -622,5 +595,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     WfdCommon
 
+# Enable custom udfps icons and animations
+TARGET_HAS_UDFPS := true
+EXTRA_UDFPS_ANIMATIONS := true
+
 # Vendor
 $(call inherit-product, vendor/xiaomi/garnet/garnet-vendor.mk)
+
+-include vendor/extra/product.mk

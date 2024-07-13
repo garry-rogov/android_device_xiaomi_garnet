@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2024 The LineageOS Project
+# Copyright (C) 2024 The lineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -9,7 +9,6 @@ DEVICE_PATH := device/xiaomi/garnet
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_INCORRECT_PARTITION_IMAGES := true
-BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 
 # A/B
 AB_OTA_UPDATER := true
@@ -43,7 +42,6 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a75
 
 # Audio
 AUDIO_FEATURE_ENABLED_DLKM := true
-AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
 AUDIO_FEATURE_ENABLED_DTS_EAGLE := false
 AUDIO_FEATURE_ENABLED_GEF_SUPPORT := true
 AUDIO_FEATURE_ENABLED_HW_ACCELERATED_EFFECTS := false
@@ -59,12 +57,7 @@ TARGET_BOOTLOADER_BOARD_NAME := parrot
 TARGET_NO_BOOTLOADER := true
 
 # Display
-TARGET_SCREEN_DENSITY ?= 470
-
-# Dolby Vision
-SOONG_CONFIG_NAMESPACES += dolby_vision
-SOONG_CONFIG_dolby_vision += enabled
-SOONG_CONFIG_dolby_vision_enabled := true
+TARGET_SCREEN_DENSITY := 446
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
@@ -73,15 +66,13 @@ TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 BOARD_USES_QCOM_HARDWARE := true
 
 # HIDL
-#DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/vintf/compatibility_matrix.xml
-#DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
-DEVICE_MATRIX_FILE += $(DEVICE_PATH)/configs/vintf/compatibility_matrix.xml
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    $(DEVICE_PATH)/configs/vintf/vendor_framework_compatibility_matrix.xml \
-    $(DEVICE_PATH)/configs/vintf/xiaomi_framework_compatibility_matrix.xml \
-    $(DEVICE_PATH)/configs/vintf/device_framework_matrix.xml
+DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
+    hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml \
+    vendor/lineage/config/device_framework_matrix.xml \
+    $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix.xml
 
-#DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/hidl/manifest.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest.xml
 
 $(foreach sku, CN GL, \
@@ -123,18 +114,18 @@ BOARD_BOOTCONFIG := \
     androidboot.usbcontroller=a600000.dwc3
 
 # Kernel (prebuilt)
-KERNEL_PATH := $(DEVICE_PATH)-kernel
-BOARD_PREBUILT_DTBIMAGE_DIR := $(KERNEL_PATH)/images/dtbs/
-BOARD_PREBUILT_DTBOIMAGE := $(KERNEL_PATH)/images/dtbo.img
+PREBUILT_PATH := device/xiaomi/garnet-kernel
+BOARD_PREBUILT_DTBIMAGE_DIR := $(PREBUILT_PATH)/images/dtbs/
+BOARD_PREBUILT_DTBOIMAGE := $(PREBUILT_PATH)/images/dtbo.img
 
 TARGET_NO_KERNEL_OVERRIDE := true
-TARGET_KERNEL_SOURCE := $(KERNEL_PATH)/kernel-headers
+TARGET_KERNEL_SOURCE := $(PREBUILT_PATH)/kernel-headers
 PRODUCT_COPY_FILES += \
-	$(KERNEL_PATH)/images/kernel:kernel
+	$(PREBUILT_PATH)/images/kernel:kernel
 
 # Kernel modules
-DLKM_MODULES_PATH := $(KERNEL_PATH)/modules/dlkm
-RAMDISK_MODULES_PATH := $(KERNEL_PATH)/modules/ramdisk
+DLKM_MODULES_PATH := $(PREBUILT_PATH)/modules/dlkm
+RAMDISK_MODULES_PATH := $(PREBUILT_PATH)/modules/ramdisk
 
 BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(DLKM_MODULES_PATH)/*.ko)
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(patsubst %,$(DLKM_MODULES_PATH)/%,$(shell cat $(DLKM_MODULES_PATH)/modules.load))
@@ -145,11 +136,8 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(patsubst %,$(RAMDISK_MODULES_PATH)
 BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD  := $(patsubst %,$(RAMDISK_MODULES_PATH)/%,$(shell cat $(RAMDISK_MODULES_PATH)/modules.load.recovery))
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(RAMDISK_MODULES_PATH)/modules.blocklist
 
-# Lineage Health
+# lineage Health
 TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
-
-# MiuiCamera
--include vendor/xiaomi/garnet-miuicamera/products/board.mk
 
 # Partitions
 -include vendor/lineage/config/BoardConfigReservedSize.mk
@@ -205,8 +193,6 @@ ENABLE_VENDOR_RIL_SERVICE := true
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
-BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/dolby
 
 # System properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/props/odm.prop
@@ -215,7 +201,7 @@ TARGET_SYSTEM_EXT_PROP += $(DEVICE_PATH)/props/system_ext.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/props/vendor.prop
 
 # Vendor security patch
-VENDOR_SECURITY_PATCH := 2024-03-01
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
@@ -234,9 +220,8 @@ BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 
 # Vibrator
-SOONG_CONFIG_NAMESPACES += XIAOMI_VIBRATOR
-SOONG_CONFIG_XIAOMI_VIBRATOR := USE_EFFECT_STREAM
-SOONG_CONFIG_XIAOMI_VIBRATOR_USE_EFFECT_STREAM := true
+TARGET_QTI_VIBRATOR_EFFECT_LIB := libqtivibratoreffect.xiaomi
+TARGET_QTI_VIBRATOR_USE_EFFECT_STREAM := true
 
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
