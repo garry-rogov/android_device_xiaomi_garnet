@@ -389,7 +389,7 @@ PRODUCT_PACKAGES += \
     libchrome.vendor \
     nqnfcinfo
 
-$(foreach sku, CN GL, \
+$(foreach sku, CN GL JP, \
     $(eval PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/android.hardware.nfc.ese.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(sku)/android.hardware.nfc.ese.xml \
         frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(sku)/android.hardware.nfc.hce.xml \
@@ -410,7 +410,8 @@ PRODUCT_PACKAGES += \
     CarrierConfigOverlayGarnet \
     DialerOverlayGarnet \
     FrameworkOverlayGarnet \
-    FrameworkOverlayGarnetEsim \
+    FrameworkOverlayGarnetGLEsim \
+    FrameworkOverlayGarnetJPEsim \
     LineageSDKOverlayGarnet \
     LineageSettingsOverlayGarnet \
     LineageSystemUIOverlayGarnet \
@@ -518,8 +519,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_GL/android.hardware.telephony.euicc.xml
+$(foreach sku, GL JP, \
+    $(eval PRODUCT_COPY_FILES += \
+        frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(sku)/android.hardware.telephony.euicc.xml))
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.cdma.xml \
