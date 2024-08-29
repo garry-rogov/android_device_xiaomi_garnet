@@ -409,6 +409,9 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.nfc.camera.pause_polling=true
 
 # Overlay
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay-lineage
+
 PRODUCT_PACKAGES += \
     ApertureOverlayGarnet \
     CarrierConfigOverlayGarnet \
