@@ -591,6 +591,9 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.vibrator.service \
     libqtivibratoreffect.xiaomi
 
+# Webcam
+TARGET_BUILD_DEVICE_AS_WEBCAM := true
+
 # WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
