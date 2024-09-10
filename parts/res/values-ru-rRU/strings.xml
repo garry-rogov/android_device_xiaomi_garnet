@@ -33,13 +33,6 @@
     <string name="refresh_standard">60Hz</string>
     <string name="refresh_extreme">120Hz</string>
 
-    <!-- Doze Strings -->
-    <string name="doze_brightness_low">Низкая яркость</string>
-    <string name="doze_brightness_high">Высокая яркость</string>
-    <string name="doze_brightness_adaptive">Адаптивная яркость</string>
-    <string name="doze_brightness_title">Уровень яркости в режиме энергосбережения</string>
-    <string name="doze_brightness_summary">Уровень яркости экрана в режиме энергосбережения (в % от максимально разрешенной яркости)</string>
-
     <!-- Clear Speaker -->
    <string name="clear_speaker_title">Очистка динамика</string>
    <string name="clear_speaker_summary">Проиграть 30-секундный звук, для очистки динамика</string>
