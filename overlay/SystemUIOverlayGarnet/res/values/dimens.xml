@@ -17,4 +17,8 @@
 
     <!-- the padding on the end of the statusbar -->
     <dimen name="status_bar_padding_end">4dp</dimen>
+
+    <!-- Microns/ums (1000 um = 1mm) per pixel for the given device. If unspecified, UI that
+         relies on this value will not be sized correctly. -->
+    <item name="pixel_pitch" format="float" type="dimen">56.96</item>
 </resources>
