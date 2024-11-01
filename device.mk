@@ -560,8 +560,6 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    usb_compositions.conf \
-    android.hardware.usb.gadget@1.2-service-qti \
     android.hardware.usb-service.qti \
     libusbhost.vendor
 
