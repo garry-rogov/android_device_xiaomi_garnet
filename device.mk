@@ -501,6 +501,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.servicetracker@1.2.vendor
 
+# SHIM
+PRODUCT_PACKAGES += \
+    libhidlbase_shim
+
 # SQLite
 PRODUCT_PACKAGES += \
     libsqlite.vendor:64
