@@ -957,4 +957,7 @@
 
     <!-- Whether the device supports Smart Pixels -->
     <bool name="config_supportSmartPixels">true</bool>
+
+    <!-- Turbulence effect -->
+    <bool name="config_mediaControlsTurbulenceByDefault">false</bool>
 </resources>
