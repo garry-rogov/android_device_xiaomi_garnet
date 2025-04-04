@@ -69,6 +69,8 @@ on init
     chmod 0660 /sys/fs/cgroup/memory/bg/tasks
 
 on post-fs
+    # Apply dolby fix
+    start init-dolby_fix-sh
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -223,6 +225,9 @@ on boot
     #chown -h root.oem_2902 /sys/bus/coresight/devices/coresight-tmc-etr/block_size
     chown -h vendor_qdss /sys/bus/coresight/devices/coresight-tmc-etr/block_size
     chmod 660 /sys/bus/coresight/devices/coresight-tmc-etr/block_size
+
+    # Modem set for redirect modem log to /sdcard/Xiaomi/diag_logs/
+    setprop persist.logd.diag.newlocation 1
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -1008,3 +1013,9 @@ service qrtr-lookup /vendor/bin/qrtr-lookup
     disabled
     oneshot
 
+on post-fs-data
+    service init-dolby_fix-sh /vendor/bin/init.dolby_fix.sh
+    class main
+    user system
+    group system
+    oneshot    

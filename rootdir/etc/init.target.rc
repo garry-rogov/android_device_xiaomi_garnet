@@ -173,7 +173,6 @@ on early-boot
     verity_update_state
 
 on boot
-    chown system system /sys/class/thermal/thermal_message/sconfig
     chown system system /sys/class/thermal/thermal_message/charger_temp
     chown system system /sys/class/thermal/thermal_message/board_sensor_temp_comp
     chown system system /sys/class/thermal/thermal_message/cpu_nolimit_temp
@@ -215,6 +214,12 @@ on boot
     chown system system /dev/cpuctl/misc/cgroup.procs
     chmod 0664 /dev/cpuctl/misc/cgroup.procs
     chmod 0664 /dev/cpuctl/misc/tasks
+
+    # Thermal Profiles permissions
+    chmod 0664 /sys/class/thermal/thermal_message/sconfig
+    chown system system /sys/class/thermal/thermal_message/sconfig
+    chmod 0666 /sys/class/thermal/thermal_message/temp_state
+    chown system system /sys/class/thermal/thermal_message/temp_stat
 
     #ufscld functions permission
     chown root system /sys/devices/platform/soc/1d84000.ufshc/ufscld/auto_hibern8_enable
@@ -271,13 +276,34 @@ on property:ro.product.name=garnet_tr
 on property:ro.product.name=garnet_id
    setprop ro.vendor.miui.support_esim true
 
-on property:ro.product.mod_device=garnet_tw_global
+on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_tw_global
    setprop ro.vendor.miui.support_esim true
 
 on property:ro.product.mod_device=garnet_jp_kd_global
    setprop ro.vendor.miui.support_esim true
+   setprop ro.vendor.miui.esim_mode 1
 
-on property:ro.product.mod_device=garnet_lm_cr_global
+on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_lm_cr_global
+   setprop ro.vendor.miui.support_esim true
+
+on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_dc_global
+   setprop ro.vendor.miui.support_esim true
+
+# pre-branch
+on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_pre_global
+   setprop ro.vendor.miui.support_esim true
+
+on property:ro.product.mod_device=garnet_pre_jp_kd_global
+   setprop ro.vendor.miui.support_esim true
+   setprop ro.vendor.miui.esim_mode 1
+
+on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_pre_lm_cr_global
+   setprop ro.vendor.miui.support_esim true
+
+on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_pre_tw_global
+   setprop ro.vendor.miui.support_esim true
+
+on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_pre_dc_global
    setprop ro.vendor.miui.support_esim true
 
 on init && property:ro.boot.mode=charger
@@ -290,7 +316,6 @@ on property:init.svc.vendor.charger=running
     start vendor.power_off_alarm
     setprop sys.usb.controller a600000.dwc3
     wait /sys/class/udc/${sys.usb.controller}
-    setprop sys.usb.configfs 1
     write /sys/devices/system/cpu/qcom_lpm/parameters/sleep_disabled 0
 
 on property:vendor.audio.cit.spkcal.copy=true
@@ -628,5 +653,6 @@ on property:sys.volume.stream.music.device.bluetooth=*
 on property:sys.volume.stream.bluetoothsco=*
     setprop vendor.volume.stream.bluetoothsco ${sys.volume.stream.bluetoothsco}
 
-    # STOP EATING MY BATTERY AFTER 100H OF UPTIME FUCK YOU
-    stop statsd
+on property:sys.boot_completed=1
+    # Enable suspend to RAM
+    write /sys/power/mem_sleep "deep"

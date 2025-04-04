@@ -6,6 +6,7 @@
 package org.lineageos.euicc
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PackageInfoFlags
 import android.util.Log
@@ -32,25 +33,27 @@ object EuiccDisabler {
         "com.google.android.euicc",
     )
 
-    private fun isInstalledAndEnabled(pm: PackageManager, pkgName: String): Boolean {
-        return runCatching {
-            val info = pm.getPackageInfo(pkgName, PackageInfoFlags.of(0))
-            Log.d(TAG, "package $pkgName installed, enabled = ${info.applicationInfo?.enabled}")
-            info.applicationInfo?.enabled ?: false
-        }.getOrDefault(false)
-    }
+    private fun isInstalled(pm: PackageManager, pkgName: String) = runCatching {
+        val info = pm.getPackageInfo(pkgName, PackageInfoFlags.of(0))
+        info.applicationInfo!!.flags and ApplicationInfo.FLAG_INSTALLED != 0
+    }.getOrDefault(false)
+
+    private fun isInstalledAndEnabled(pm: PackageManager, pkgName: String) = runCatching {
+        val info = pm.getPackageInfo(pkgName, PackageInfoFlags.of(0))
+        Log.d(TAG, "package $pkgName installed, enabled = ${info.applicationInfo?.enabled}")
+        info.applicationInfo?.enabled
+    }.getOrDefault(false)
 
     fun enableOrDisableEuicc(context: Context) {
         val pm = context.packageManager
         val sku = SystemProperties.get("ro.boot.product.hardware.sku")
-        
         val disable = if (sku == "IN" || sku == "CN") {
             Log.d(TAG, "Disabling apps due to IN or CN SKU")
-            true
+            true // Disable if SKU is IN or CN
         } else {
-            EUICC_DEPENDENCIES.any { !isInstalledAndEnabled(pm, it) }
+            EUICC_DEPENDENCIES.any {
+               !(isInstalledAndEnabled(pm, it) ?: false) }
         }
-
         val flag = if (disable) {
             PackageManager.COMPONENT_ENABLED_STATE_DISABLED
         } else {
@@ -58,11 +61,8 @@ object EuiccDisabler {
         }
 
         for (pkg in EUICC_PACKAGES) {
-            try {
+            if (isInstalled(pm, pkg)) {
                 pm.setApplicationEnabledSetting(pkg, flag, 0)
-                Log.d(TAG, "Package $pkg set to ${if (disable) "disabled" else "enabled"}")
-            } catch (e: Exception) {
-                Log.e(TAG, "Failed to change state for package $pkg", e)
             }
         }
     }
