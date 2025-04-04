@@ -906,64 +906,6 @@
          on the headphone/microphone jack. When false use the older uevent framework. -->
     <bool name="config_useDevInputEventForAudioJack">true</bool>
 
-    <!-- Whether devices suports in-display fingerprint when screen is off -->
-    <bool name="config_supportScreenOffUdfps">true</bool>
-
-    <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
-         when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
-         where: IDs are unique per device, Modality as defined in BiometricAuthenticator.java,
-         and Strength as defined in Authenticators.java -->
-    <string-array name="config_biometric_sensors" translatable="false">
-        <item>0:2:15</item>
-    </string-array>
-
-    <!-- The properties of a UDFPS sensor in pixels, in the order listed below: -->
-    <integer-array name="config_udfps_sensor_props" translatable="false" >
-        <item>610</item>  <!-- <item>sensorLocationX</item> -->
-        <item>2437</item> <!-- <item>sensorLocationY</item> -->
-        <item>105</item>   <!-- <item>sensorRadius</item> -->
-    </integer-array>
-
     <!-- Type of the udfps long press sensor. Empty if long press is not supported. -->
     <string name="config_dozeUdfpsLongPressSensorType" translatable="false">org.lineageos.sensor.udfps</string>
-
-    <!-- Whether device implements proximity sensor based checks to prevent
-         accidental unlocks when the screen is off. -->
-    <bool name="config_proximityCheckOnFpsUnlock">true</bool>
-
-    <!-- The max scale for the wallpaper when it's zoomed in -->
-    <item name="config_wallpaperMaxScale" format="float" type="dimen">1</item>
-
-   <!-- Flag indicating whether the surface flinger is inefficient
-         at performing a blur.  Used by parts of the UI to turn off
-         the blur effect where it isn't worth the performance hit.
-         As of Honeycomb, blurring is not supported anymore. -->
-    <bool name="config_sf_slowBlur">false</bool>
-
-    <!-- Preferred max refresh rate at AOD & Ambient Display, if supported by the display. -->
-    <integer name="config_aodMaxRefreshRate">60</integer>
-
-    <!-- Preferred refresh rate at keyguard, if supported by the display -->
-    <integer name="config_keyguardRefreshRate">60</integer>
-
-    <!-- Preferred max refresh rate at keyguard, if supported by the display. -->
-    <integer name="config_keyguardMaxRefreshRate">60</integer>
-
-    <!-- Path to fast charging status file to detect whether an oem fast charger is active -->
-    <string name="config_oemFastChargerStatusPath" translatable="false">/sys/class/qcom-battery/fastchg_mode</string>
-
-    <!-- Expected value from fast charging status file  -->
-    <string name="config_oemFastChargerStatusValue" translatable="false">1</string>
-
-    <!-- Whether the device supports Smart Pixels -->
-    <bool name="config_supportSmartPixels">true</bool>
-
-    <!-- Turbulence effect -->
-    <bool name="config_mediaControlsTurbulenceByDefault">false</bool>
-
-   <!-- Flag indicating whether the surfaceflinger has limited
-         alpha compositing functionality in hardware.  If set, the window
-         manager will disable alpha trasformation in animations where not
-         strictly needed. -->
-    <bool name="config_sf_limitedAlpha">true</bool>
 </resources>
