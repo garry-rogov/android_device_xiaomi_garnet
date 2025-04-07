@@ -10,6 +10,27 @@ soong_namespace {
     ],
 }
 
+ prebuilt_hidl_interfaces {
+     name: "hidl_bgservice_interface",
+     interfaces: [
+         "vendor.xiaomi.hardware.bgservice@1.0::IBGService",
+     ],
+ }
+ 
+ prebuilt_hidl_interfaces {
+     name: "hidl_campostproc_interface",
+     interfaces: [
+         "vendor.xiaomi.hardware.campostproc@1.0::IMiPostProcService",
+     ],
+ }
+ 
+ prebuilt_hidl_interfaces {
+     name: "hidl_quickcamera_interface",
+     interfaces: [
+         "vendor.xiaomi.hardware.quickcamera@1.0::IQuickCameraService",
+     ],
+ }
+
 install_symlink {
     name: "firmware_wlan_mac.bin_symlink",
     vendor: true,
