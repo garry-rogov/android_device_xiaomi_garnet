@@ -191,8 +191,6 @@
     <ctl name="HPHL Volume" value="20" />
     <ctl name="HPHR Volume" value="20" />
 
-    <ctl name="HPHL Volume" value="18" />
-    <ctl name="HPHR Volume" value="18" />
     <ctl name="TX_DEC0 Volume" value="84" />
     <ctl name="TX_DEC1 Volume" value="84" />
     <ctl name="TX_DEC2 Volume" value="84" />
@@ -201,19 +199,14 @@
     <ctl name="TX_DEC5 Volume" value="84" />
     <ctl name="TX_DEC6 Volume" value="84" />
     <ctl name="TX_DEC7 Volume" value="84" />
+    <!-- add fs19xx control -->
+     <ctl name="FSM_Scene" value="0" />
+     <ctl name="FSM_Ultrasound_Enable" value="0" />
 
     <ctl name="ADC1 Volume" value="12" />
     <ctl name="ADC2 Volume" value="12" />
     <ctl name="ADC3 Volume" value="12" />
     <ctl name="ADC4 Volume" value="12" />
-
-    <!-- add new awinic aw88261 controls -->
-    <ctl name="aw_dev_0_switch" value="Disable" />
-    <ctl name="aw_dev_0_prof"  value="Music" />
-    <ctl name="aw_dev_1_switch" value="Disable" />
-    <ctl name="aw_dev_1_prof"  value="Music" />
-    <ctl name="aw882xx_spk_sw_gpio_switch" value="0"/>
-    <!-- awinic controls end -->
 
     <!-- Compander controls -->
     <ctl name="WSA_COMP1 Switch" value="0" />
@@ -370,8 +363,7 @@
     </path>
 
     <path name="speaker">
-        <ctl name="aw_dev_0_switch" value="Enable" />
-        <ctl name="aw_dev_1_switch" value="Enable" />
+        <ctl name="FSM_Scene" value="0" />
         <ctl name="WSA RX0 MUX" value="AIF1_PB" />
         <ctl name="WSA RX1 MUX" value="AIF1_PB" />
         <ctl name="WSA_RX0 INP0" value="RX0" />
@@ -391,7 +383,7 @@
     </path>
 
     <path name="speaker-mono">
-        <ctl name="aw_dev_0_switch" value="Enable" />
+        <ctl name="FSM_Scene" value="0" />
         <ctl name="WSA RX0 MUX" value="AIF1_PB" />
         <ctl name="WSA_RX0 INP0" value="RX0" />
         <ctl name="WSA_COMP1 Switch" value="1" />
@@ -401,10 +393,7 @@
     </path>
 
     <path name="speaker-mono-2">
-        <ctl name="aw_dev_0_prof"  value="Voice" />
-        <ctl name="aw_dev_0_switch" value="Enable" />
-        <ctl name="aw_dev_1_prof"  value="Voice" />
-        <ctl name="aw_dev_1_switch" value="Enable" />
+        <ctl name="FSM_Scene" value="1" />
         <ctl name="WSA RX1 MUX" value="AIF1_PB" />
         <ctl name="WSA_RX1 INP0" value="RX1" />
         <ctl name="WSA_COMP2 Switch" value="1" />
@@ -580,9 +569,7 @@
     </path>
 
     <path name="handset">
-        <ctl name="aw_dev_0_prof"  value="Receiver" />
-        <ctl name="aw_dev_0_switch" value="Enable" />
-        <ctl name="aw882xx_spk_sw_gpio_switch" value="1" />
+        <ctl name="FSM_Scene" value="15" />
         <ctl name="WSA RX0 MUX" value="AIF1_PB" />
         <ctl name="WSA_RX0 INP0" value="RX0" />
         <ctl name="WSA_COMP1 Switch" value="1" />
@@ -591,9 +578,6 @@
         <ctl name="SpkrLeft SWR DAC_Port Switch" value="1" />
         <ctl name="EAR SPKR PA Gain" value="G_6_DB" />
         <ctl name="WSA_RX0 Digital Volume" value="60" />
-        <ctl name="aw_dev_0_prof"  value="Receiver" />
-        <ctl name="aw_dev_0_switch" value="Enable" />
-        <ctl name="aw882xx_spk_sw_gpio_switch" value="1" />
     </path>
 
     <path name="handset-mic">
@@ -601,9 +585,7 @@
     </path>
 
     <path name="ultrasound-handset">
-        <ctl name="aw_dev_0_prof"  value="Receiver" />
-        <ctl name="aw_dev_0_switch" value="Enable" />
-        <ctl name="aw882xx_spk_sw_gpio_switch" value="1" />
+        <ctl name="FSM_Ultrasound_Enable" value="1" />
         <ctl name="WSA RX_MIX0 MUX" value="AIF_MIX1_PB" />
         <ctl name="WSA_RX0 MIX INP" value="RX_MIX0" />
         <ctl name="WSA_COMP1 Switch" value="1" />
@@ -615,14 +597,15 @@
 
     <path name="ultrasound-mic">
          <ctl name="TX_DEC4 Volume" value="84" />
-         <ctl name="TX DEC4 MUX" value="SWR_MIC" />
-         <ctl name="TX SMIC MUX4" value="SWR_MIC5" />
-         <ctl name="TX_AIF2_CAP Mixer DEC4" value="1" />
-         <ctl name="ADC3 ChMap" value="SWRM_TX2_CH2" />
-         <ctl name="TX2 MODE" value="ADC_LP" />
-         <ctl name="HDR34 MUX" value="HDR34" />
-         <ctl name="ADC3_MIXER Switch" value="1" />
-         <ctl name="ADC3 Volume" value="8" />
+          <ctl name="TX DEC4 MUX" value="SWR_MIC" />
+          <ctl name="TX SMIC MUX4" value="SWR_MIC5" />
+          <ctl name="TX_AIF2_CAP Mixer DEC4" value="1" />
+          <ctl name="ADC3 ChMap" value="SWRM_TX2_CH2" />
+          <ctl name="TX2 MODE" value="ADC_LP" />
+          <ctl name="HDR34 MUX" value="HDR34" />
+          <ctl name="ADC3_MIXER Switch" value="1" />
+          <ctl name="ADC3 Volume" value="8" />
+        <path name="amic6" />
     </path>
 
     <path name="headphones">
@@ -1291,13 +1274,11 @@
         <ctl name="ADC4 Volume" value="12" />
     </path>
     <path name="speaker-top">
-        <ctl name="aw_dev_0_prof"  value="Music" />
-        <ctl name="aw_dev_0_switch" value="Enable" />
+        <ctl name="FSM_Scene"  value="7" />
         <path name="speaker" />
     </path>
     <path name="speaker-bot">
-        <ctl name="aw_dev_1_prof"  value="Music" />
-        <ctl name="aw_dev_1_switch" value="Enable" />
+        <ctl name="FSM_Scene"  value="9" />
         <path name="speaker" />
     </path>
     <path name="va-mic-enroll">

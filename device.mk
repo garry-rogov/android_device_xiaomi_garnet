@@ -57,6 +57,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     audioadsprpcd:64 \
+    audio.primary.parrot:64 \
     audio.r_submix.default:64 \
     audio.usb.default:64 \
     sound_trigger.primary.parrot:64
@@ -65,18 +66,18 @@ PRODUCT_PACKAGES += \
     agmcap:64 \
     agmcompressplay:64 \
     agmplay:64 \
+    lib_bt_aptx:64 \
+    lib_bt_ble:64 \
+    lib_bt_bundle:64 \
     libagm_compress_plugin:64 \
     libagm_mixer_plugin:64 \
     libagm_pcm_plugin:64 \
-    libagmclient:64 \
-    libagmmixer:64 \
     libbatterylistener:64 \
     libfmpal:64 \
     libpalclient:64 \
     libqcompostprocbundle:64 \
     libqcomvisualizer:64 \
     libqcomvoiceprocessing:64 \
-    libsndcardparser:64 \
     libvolumelistener:64
 
 AUDIO_HAL_DIR := hardware/qcom-caf/sm8450/audio/primary-hal
@@ -87,23 +88,19 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.midi.xml
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/microphone_characteristics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/microphone_characteristics.xml \
-    $(LOCAL_PATH)/configs/audio/backend_conf.xml:$(TARGET_COPY_OUT_VENDOR)/etc/backend_conf.xml \
-    $(LOCAL_PATH)/configs/audio/backend_conf_fs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/backend_conf_fs.xml \
-    $(LOCAL_PATH)/configs/audio/card-defs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/card-defs.xml \
-    $(LOCAL_PATH)/configs/audio/kvh2xml.xml:$(TARGET_COPY_OUT_VENDOR)/etc/kvh2xml.xml \
+    $(AUDIO_HAL_DIR)/configs/parrot/microphone_characteristics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/microphone_characteristics.xml \
     $(LOCAL_PATH)/configs/audio/usecaseKvManager.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usecaseKvManager.xml
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/audio_effects.conf \
+    hardware/qcom-caf/sm8450/audio/primary-hal/configs/parrot/card-defs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/card-defs.xml \
+    hardware/qcom-caf/sm8450/audio/primary-hal/configs/parrot/microphone_characteristics.xml:$(TARGET_COPY_OUT_VENDOR)/etc/microphone_characteristics.xml
+
+PRODUCT_COPY_FILES += \
+    $(AUDIO_HAL_DIR)/configs/parrot/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/audio_effects.xml \
     $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/audio_policy_configuration.xml \
     $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot_qssi/audio_policy_configuration.xml \
-    $(LOCAL_PATH)/configs/audio/mixer_paths_overlay_dynamic.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/foursemi/mixer_paths_overlay_dynamic.xml \
-    $(LOCAL_PATH)/configs/audio/mixer_paths_overlay_dynamic.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/mixer_paths_overlay_dynamic.xml \
-    $(LOCAL_PATH)/configs/audio/mixer_paths_overlay_static.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/mixer_paths_overlay_static.xml \
-    $(LOCAL_PATH)/configs/audio/mixer_paths_overlay_static_foursemi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/foursemi/mixer_paths_overlay_static.xml \
-    $(LOCAL_PATH)/configs/audio/mixer_paths_parrot_qrd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/foursemi/mixer_paths_parrot_qrd.xml \
+    $(LOCAL_PATH)/configs/audio/mixer_paths_parrot_qrd.foursemi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/foursemi/mixer_paths_parrot_qrd.xml \
     $(LOCAL_PATH)/configs/audio/mixer_paths_parrot_qrd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/mixer_paths_parrot_qrd.xml \
     $(LOCAL_PATH)/configs/audio/resourcemanager_parrot_qrd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/resourcemanager_parrot_qrd.xml \
     $(LOCAL_PATH)/configs/audio/resourcemanager_parrot_qrd_foursemi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_parrot/foursemi/resourcemanager_parrot_qrd.xml \
@@ -189,6 +186,7 @@ PRODUCT_COPY_FILES += \
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.4.vendor:64 \
+    android.hardware.drm-service.clearkey:64 \
     libcrypto_shim.vendor:64
 
 # Device-specific settings
@@ -507,6 +505,9 @@ PRODUCT_BOOT_JARS += \
     telephony-ext \
     xiaomi-telephony-stub
 
+PRODUCT_PACKAGES += \
+    qcrilNrDb_vendor
+
 $(foreach sku, GL JP, \
     $(eval PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(sku)/android.hardware.telephony.euicc.xml))
@@ -519,6 +520,7 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
+    android.hardware.thermal-service.qti \
     android.hardware.thermal@2.0.vendor
 
 # Touchscreen

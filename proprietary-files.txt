@@ -1,17 +1,16 @@
 # All unpinned blobs below are extracted from garnet OS2.0.6.0.VNRMIXM - HyperOS_GARNETGlobal_OS2.0.6.0.VNRMIXM
 
 # Current blobs with ELF checks disabled:
-# audio.primary.parrot depends on vendor.qti.hardware.pal@1.0-impl, which is a gnu makefile target
 # cnss_diag depends on libwifi-hal-ctrl, which is a gnu makefile target
-# libar-pal depends on libagmclient, which is a gnu makefile target
-# libawcal, libfsalgocal depends on libagmmixer, which is a gnu makefile target
+# libmcs depends on libar-acdb, libagm, libats, liblx-osal which are gnu makefile targets
 # libqc2audio_hwaudiocodec depends on libpalclient, which is a gnu makefile target
+# libqtigefar depends on libar-pal, which is a gnu makefile target
 
 # ACDB
-vendor/etc/acdbdata/Mise/Mise_acdb_cal.acdb
-vendor/etc/acdbdata/Mise/Mise_workspaceFileXml.qwsp
-vendor/etc/acdbdata/Mise/foursemi/Mise_acdb_cal_fs.acdb
-vendor/etc/acdbdata/Mise/foursemi/Mise_workspaceFileXml_fs.qwsp
+vendor/etc/acdbdata/Mise/Mise_acdb_cal.acdb:vendor/etc/acdbdata/parrot_qrd/Mise_acdb_cal.acdb
+vendor/etc/acdbdata/Mise/Mise_workspaceFileXml.qwsp:vendor/etc/acdbdata/parrot_qrd/Mise_workspaceFileXml.qwsp
+vendor/etc/acdbdata/Mise/foursemi/Mise_acdb_cal_fs.acdb:vendor/etc/acdbdata/parrot_qrd/foursemi/Mise_acdb_cal_fs.acdb
+vendor/etc/acdbdata/Mise/foursemi/Mise_workspaceFileXml_fs.qwsp:vendor/etc/acdbdata/parrot_qrd/foursemi/Mise_workspaceFileXml_fs.qwsp
 vendor/etc/acdbdata/nn_ns_models/fai__2.0.0_0.1__3.0.0_0.0__eai_1.36_enpu2.pmd
 vendor/etc/acdbdata/nn_ns_models/fai__2.3.0_0.1__3.0.0_0.0__eai_1.10.pmd
 vendor/etc/acdbdata/nn_ns_models/fai__2.3.0_0.1__3.0.0_0.0__eai_1.36_enpu2_comp.pmd
@@ -90,12 +89,7 @@ vendor/firmware/aw882xx_acf.bin
 vendor/firmware/fs19xx.fsm
 
 # Audio graph manager
-vendor/lib/libagm.so
-vendor/lib/libmisight.so
-vendor/lib/vendor.qti.hardware.AGMIPC@1.0-impl.so
-vendor/lib64/libagm.so
 vendor/lib64/libmisight.so
-vendor/lib64/vendor.qti.hardware.AGMIPC@1.0-impl.so
 
 # Audio libraries
 vendor/etc/audio_cloud_control_white_list.xml
@@ -103,40 +97,16 @@ vendor/etc/audio_diag.cfg
 vendor/etc/models/acd/event.eai
 vendor/etc/models/acd/music.eai
 vendor/etc/models/acd/speech.eai
-vendor/lib/libats.so
-vendor/lib/libaudioroute_ext.so
 vendor/lib/libaudio_log_utils.so
-vendor/lib/libar-acdb.so
-vendor/lib/libar-gpr.so
-vendor/lib/libar-gsl.so
-vendor/lib/liblx-ar_util.so
-vendor/lib/liblx-osal.so
-vendor/lib/libxlog.so
-vendor/lib64/hw/audio.primary.parrot.so;DISABLE_CHECKELF
-vendor/lib64/hw/gyro_fusion_interface.so
 vendor/lib64/lib_misound_asc.so
 vendor/lib64/libadm.so
 vendor/lib64/libadsprpc.so
-vendor/lib64/libar-acdb.so
-vendor/lib64/libar-gpr.so
-vendor/lib64/libar-gsl.so
-vendor/lib64/libar-pal.so;DISABLE_CHECKELF
-vendor/lib64/libats.so
 vendor/lib64/libaudio_log_utils.so
-vendor/lib64/libaudiocloudctrl.so
-vendor/lib64/libaudioroute_ext.so
-vendor/lib64/libawcal.so;DISABLE_CHECKELF
 vendor/lib64/libcapiv2svacnnvendor.so
 vendor/lib64/libcapiv2svarnnvendor.so
 vendor/lib64/libcapiv2uvvendor.so
-vendor/lib64/libfsalgocal.so;DISABLE_CHECKELF
-vendor/lib64/libkaraokepal.so
-vendor/lib64/liblx-ar_util.so
-vendor/lib64/liblx-osal.so
-vendor/lib64/libmcs.so
-vendor/lib64/libqtigefar.so
-vendor/lib64/libresampler.so
-vendor/lib64/libxlog.so
+vendor/lib64/libmcs.so;DISABLE_CHECKELF
+vendor/lib64/libqtigefar.so;DISABLE_CHECKELF
 
 # Audio soundfx
 vendor/lib64/soundfx/libasphere.so
@@ -158,9 +128,6 @@ vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.1-impl.so
 vendor/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.1-impl.so
 vendor/lib64/hw/vendor.qti.hardware.btconfigstore@1.0-impl.so
 vendor/lib64/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so
-vendor/lib64/lib_bt_aptx.so
-vendor/lib64/lib_bt_ble.so
-vendor/lib64/lib_bt_bundle.so
 vendor/lib64/libbluetooth_audio_session_qti.so
 vendor/lib64/libbluetooth_audio_session_qti_2_1.so
 vendor/lib64/libbt-hidlclient.so
@@ -1560,6 +1527,7 @@ vendor/lib64/libvideotxr.so
 vendor/lib64/qti.video.utils.videobufferlayout.so
 
 # Media Config
+vendor/etc/media_codecs_c2_audio.xml
 vendor/etc/media_codecs_parrot_v0.xml
 vendor/etc/media_codecs_performance_parrot_v0.xml
 vendor/etc/media_parrot_v0/video_system_specs.json
@@ -1948,32 +1916,28 @@ vendor/etc/init/ssgtzd.rc
 vendor/etc/init/vendor.qti.rmt_storage.rc
 vendor/etc/init/vendor.qti.tftp.rc
 vendor/etc/permissions/noRil/apq_excluded_telephony_features.xml
-vendor/etc/qcril_database/qcrilNr.db
-vendor/etc/qcril_database/upgrade/config/10.0_config.sql
-vendor/etc/qcril_database/upgrade/config/11.0_config.sql
-vendor/etc/qcril_database/upgrade/config/12.0_config.sql
-vendor/etc/qcril_database/upgrade/config/12.0_config.sql
-vendor/etc/qcril_database/upgrade/config/13.0_config.sql
-vendor/etc/qcril_database/upgrade/config/13.0_config.sql
-vendor/etc/qcril_database/upgrade/config/14.0_config.sql
-vendor/etc/qcril_database/upgrade/config/6.0_config.sql
-vendor/etc/qcril_database/upgrade/config/7.0_config.sql
-vendor/etc/qcril_database/upgrade/config/8.0_config.sql
-vendor/etc/qcril_database/upgrade/config/9.0_config.sql
-vendor/etc/qcril_database/upgrade/other/0_initial_qcrilnr.sql
-vendor/etc/qcril_database/upgrade/other/10_version_update_ecc_table.sql
-vendor/etc/qcril_database/upgrade/other/11_version_update_ecc_table.sql
-vendor/etc/qcril_database/upgrade/other/12_version_update_ecc_table.sql
-vendor/etc/qcril_database/upgrade/other/12_version_update_ecc_table.sql
-vendor/etc/qcril_database/upgrade/other/1_version_intro_qcrilnr.sql
-vendor/etc/qcril_database/upgrade/other/2_version_add_wps_config_qcrilnr.sql
-vendor/etc/qcril_database/upgrade/other/3_version_update_wps_config_qcrilnr.sql
-vendor/etc/qcril_database/upgrade/other/4_version_update_ecc_table_qcrilnr.sql
-vendor/etc/qcril_database/upgrade/other/5_version_update_ecc_table_qcrilnr.sql
-vendor/etc/qcril_database/upgrade/other/6_version_change_property_table_qcrilnr.sql
-vendor/etc/qcril_database/upgrade/other/7_version_update_ecc_table_qcrilnr.sql
-vendor/etc/qcril_database/upgrade/other/8_version_update_ecc_table.sql
-vendor/etc/qcril_database/upgrade/other/9_version_update_ecc_table.sql
+vendor/etc/qcril_database/upgrade/config/10.0_config.sql;FILEGROUP=proprietary_rildb_config_sql_files
+vendor/etc/qcril_database/upgrade/config/11.0_config.sql;FILEGROUP=proprietary_rildb_config_sql_files
+vendor/etc/qcril_database/upgrade/config/12.0_config.sql;FILEGROUP=proprietary_rildb_config_sql_files
+vendor/etc/qcril_database/upgrade/config/13.0_config.sql;FILEGROUP=proprietary_rildb_config_sql_files
+vendor/etc/qcril_database/upgrade/config/14.0_config.sql;FILEGROUP=proprietary_rildb_config_sql_files
+vendor/etc/qcril_database/upgrade/config/6.0_config.sql;FILEGROUP=proprietary_rildb_config_sql_files
+vendor/etc/qcril_database/upgrade/config/7.0_config.sql;FILEGROUP=proprietary_rildb_config_sql_files
+vendor/etc/qcril_database/upgrade/config/8.0_config.sql;FILEGROUP=proprietary_rildb_config_sql_files
+vendor/etc/qcril_database/upgrade/config/9.0_config.sql;FILEGROUP=proprietary_rildb_config_sql_files
+vendor/etc/qcril_database/upgrade/other/0_initial_qcrilnr.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/10_version_update_ecc_table.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/11_version_update_ecc_table.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/12_version_update_ecc_table.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/1_version_intro_qcrilnr.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/2_version_add_wps_config_qcrilnr.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/3_version_update_wps_config_qcrilnr.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/4_version_update_ecc_table_qcrilnr.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/5_version_update_ecc_table_qcrilnr.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/6_version_change_property_table_qcrilnr.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/7_version_update_ecc_table_qcrilnr.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/8_version_update_ecc_table.sql;FILEGROUP=proprietary_rildb_other_sql_files
+vendor/etc/qcril_database/upgrade/other/9_version_update_ecc_table.sql;FILEGROUP=proprietary_rildb_other_sql_files
 vendor/etc/seccomp_policy/atfwd@2.0.policy
 vendor/etc/seccomp_policy/imsrtp.policy
 vendor/etc/seccomp_policy/qcrilnr@2.0.policy

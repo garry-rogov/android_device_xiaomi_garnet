@@ -45,15 +45,19 @@ lib_fixups: lib_fixups_user_type = {
         'com.qualcomm.qti.dpm.api@1.0',
     ): lib_fixup_vendor_suffix,
     (
-        'libagmclient',
-        'libagmmixer',
+        'libagm',
+        'libar-acdb',
+        'libar-pal',
+        'libats',
+        'liblx-osal',
         'libwifi-hal-ctrl',
         'libpalclient',
-        'vendor.qti.hardware.pal@1.0-impl',
     ): lib_fixup_remove,
 }
 
 blob_fixups: blob_fixups_user_type = {
+    'system_ext/bin/wfdservice64': blob_fixup()
+        .add_needed('libwfdservice_shim.so'),
     'system_ext/lib64/libwfdnative.so': blob_fixup()
         .add_needed('libinput_shim.so'),
     'system_ext/lib64/libwfdmmsrc_system.so': blob_fixup()
@@ -131,8 +135,6 @@ blob_fixups: blob_fixups_user_type = {
             'android.hardware.gnss-V1-ndk_platform.so',
             'android.hardware.gnss-V1-ndk.so',
     ),
-    ('vendor/lib64/libqcrilNr.so', 'vendor/lib64/libril-db.so'): blob_fixup()
-        .binary_regex_replace(rb'persist\.vendor\.radio\.poweron_opt', rb'persist.vendor.radio.poweron_ign'),
     ('vendor/lib64/libalLDC.so', 'vendor/lib64/libalhLDC.so'): blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')
         .clear_symbol_version('AHardwareBuffer_describe')
