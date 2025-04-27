@@ -3,8 +3,8 @@
 # Current blobs with ELF checks disabled:
 # audio.primary.parrot depends on vendor.qti.hardware.pal@1.0-impl, which is a gnu makefile target
 # cnss_diag depends on libwifi-hal-ctrl, which is a gnu makefile target
-# libar-pal depends on libagmclient, which is a gnu makefile target
-# libawcal, libfsalgocal depends on libagmmixer, which is a gnu makefile target
+# libmcs depends on libar-acdb, libagm, libats, liblx-osal which are gnu makefile targets
+# libfsalgocal depends on libagmmixer, which is a gnu makefile target
 # libqc2audio_hwaudiocodec depends on libpalclient, which is a gnu makefile target
 
 # ACDB
@@ -130,13 +130,8 @@ vendor/lib64/libcapiv2svacnnvendor.so
 vendor/lib64/libcapiv2svarnnvendor.so
 vendor/lib64/libcapiv2uvvendor.so
 vendor/lib64/libfsalgocal.so;DISABLE_CHECKELF
-vendor/lib64/libkaraokepal.so
-vendor/lib64/liblx-ar_util.so
-vendor/lib64/liblx-osal.so
-vendor/lib64/libmcs.so
-vendor/lib64/libqtigefar.so
-vendor/lib64/libresampler.so
-vendor/lib64/libxlog.so
+vendor/lib64/libmcs.so;DISABLE_CHECKELF
+vendor/lib64/libqtigefar.so;DISABLE_CHECKELF
 
 # Audio soundfx
 vendor/lib64/soundfx/libasphere.so

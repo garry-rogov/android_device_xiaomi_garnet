@@ -45,8 +45,12 @@ lib_fixups: lib_fixups_user_type = {
         'com.qualcomm.qti.dpm.api@1.0',
     ): lib_fixup_vendor_suffix,
     (
-        'libagmclient',
+        'libagm',
         'libagmmixer',
+        'libar-acdb',
+        'libar-pal',
+        'libats',
+        'liblx-osal',
         'libwifi-hal-ctrl',
         'libpalclient',
         'vendor.qti.hardware.pal@1.0-impl',
