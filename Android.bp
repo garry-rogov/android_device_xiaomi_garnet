@@ -10,7 +10,21 @@ soong_namespace {
     ],
 }
 
- prebuilt_hidl_interfaces {
+install_symlink {
+    name: "firmware_wlan_mac.bin_symlink",
+    vendor: true,
+    installed_location: "firmware/wlan/qca_cld/adrastea/wlan_mac.bin",
+    symlink_target: "/mnt/vendor/persist/wlan/wlan_mac.bin",
+}
+
+install_symlink {
+    name: "firmware_WCNSS_qcom_cfg.ini_symlink",
+    vendor: true,
+    installed_location: "firmware/wlan/qca_cld/adrastea/WCNSS_qcom_cfg.ini",
+    symlink_target: "/vendor/etc/wifi/adrastea/WCNSS_qcom_cfg.ini",
+}
+
+prebuilt_hidl_interfaces {
      name: "hidl_bgservice_interface",
      interfaces: [
          "vendor.xiaomi.hardware.bgservice@1.0::IBGService",
@@ -30,17 +44,3 @@ soong_namespace {
          "vendor.xiaomi.hardware.quickcamera@1.0::IQuickCameraService",
      ],
  }
-
-install_symlink {
-    name: "firmware_wlan_mac.bin_symlink",
-    vendor: true,
-    installed_location: "firmware/wlan/qca_cld/adrastea/wlan_mac.bin",
-    symlink_target: "/mnt/vendor/persist/wlan/wlan_mac.bin",
-}
-
-install_symlink {
-    name: "firmware_WCNSS_qcom_cfg.ini_symlink",
-    vendor: true,
-    installed_location: "firmware/wlan/qca_cld/adrastea/WCNSS_qcom_cfg.ini",
-    symlink_target: "/vendor/etc/wifi/adrastea/WCNSS_qcom_cfg.ini",
-}

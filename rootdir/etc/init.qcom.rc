@@ -69,8 +69,6 @@ on init
     chmod 0660 /sys/fs/cgroup/memory/bg/tasks
 
 on post-fs
-    # Apply dolby fix
-    start init-dolby_fix-sh
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -1013,9 +1011,3 @@ service qrtr-lookup /vendor/bin/qrtr-lookup
     disabled
     oneshot
 
-on post-fs-data
-    service init-dolby_fix-sh /vendor/bin/init.dolby_fix.sh
-    class main
-    user system
-    group system
-    oneshot    

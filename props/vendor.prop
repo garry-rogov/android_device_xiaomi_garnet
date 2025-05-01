@@ -8,6 +8,8 @@ audio.offload.video=true
 audio.spatializer.pose_predictor_type=2
 audio.spatializer.prediction_duration_ms=50
 persist.vendor.audio.auto.scenario=true
+persist.vendor.audio.misound.disable=true
+persist.vendor.audio.misoundasc=false
 ro.af.client_heap_size_kbyte=7168
 ro.audio.flinger_standbytime_ms=2000
 ro.audio.monitorRotation=true
@@ -39,10 +41,13 @@ vendor.audio.feature.battery_listener.enable=true
 vendor.audio.feature.dmabuf.cma.memory.enable=true
 vendor.audio.feature.hfp.enable=true
 vendor.audio.feature.kpi_optimize.enable=false
+vendor.audio.feature.compr_voip.enable=true
 vendor.audio.hdr.record.enable=false
-vendor.audio.offload.buffer.size.kb=256
+vendor.audio.offload.buffer.size.kb=32
 vendor.audio.safx.pbe.enabled=false
 vendor.audio.ull_record_period_multiplier=2
+vendor.audio.ultrasound.stoplatency=60
+vendor.audio.ultrasound.usync=1000
 vendor.audio.volume.headset.gain.depcal=true
 vendor.audio_hal.period_size=192
 vendor.qc2audio.per_frame.flac.dec.enabled=true
@@ -115,14 +120,6 @@ vendor.display.enable_optimize_refresh=0
 vendor.display.idle_time=0
 vendor.display.vds_allow_hwc=0
 
-# Dolby
-ro.vendor.dolby.dax.version=DAX3_3.7.0.8_r1
-ro.audio.ignore_effects=false
-ro.dolby.mod_uuid=false
-ro.dolby.music_stream=false
-vendor.audio.dolby.ds2.enabled=false
-vendor.audio.dolby.ds2.hardbypass=false
-
 # DPM
 persist.vendor.dpm.vndr.feature=1
 persist.vendor.dpm.vndr.halservice.enable=1
@@ -157,7 +154,6 @@ debug.sf.predict_hwc_composition_strategy=0
 debug.sf.set_idle_timer_ms=1100
 debug.sf.treat_170m_as_sRGB=1
 debug.sf.use_phase_offsets_as_durations=1
-debug.sf.defer_refresh_rate_when_off=1
 persist.sys.sf.color_mode=0
 persist.sys.sf.color_saturation=1.0
 ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.pineapple.api34
@@ -183,6 +179,7 @@ ro.hardware.keystore_desede=true
 # Media
 debug.c2.use_dmabufheaps=1
 debug.stagefright.c2inputsurface=-1
+debug.sdm.support_writeback=0
 ro.media.xml_variant.profiles=_parrot_v0
 vendor.media.omx=0
 

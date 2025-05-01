@@ -18,17 +18,3 @@ persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
 persist.dbg.wfc_avail_ovr=1
 
-# Audio
-audio.safemedia.bypass=true
-ro.ril.enable.amr.wideband=1
-dev.pm.dyn_samplingrate=1
-af.resampler.quality=7
-lpa.decode=false
-lpa.use-stagefright=false
-lpa.releaselock=false
-ro.audio.resampler.psd.enable_at_samplerate=44100
-ro.audio.resampler.psd.stopband =144
-ro.audio.resampler.psd.halflength=960
-ro.audio.resampler.psd.cutoff_percent=100
-ro.audio.resampler.psd.tbwcheat=0
-ro.audio.ignore_effects=false
