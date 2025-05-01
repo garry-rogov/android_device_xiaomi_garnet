@@ -39,18 +39,14 @@ ro.HOME_APP_ADJ=1
 # Inherit from garnet device
 $(call inherit-product, device/xiaomi/garnet/device.mk)
 
+# MiuiCamera
+$(call inherit-product-if-exists, vendor/xiaomi/garnet-miuicamera/products/miuicamera.mk)
+$(call inherit-product, vendor/xiaomi/garnet-miuicamera/products/board.mk)
+
 # Device config
 TARGET_ENABLE_BLUR := true
 TARGET_EXCLUDES_AUDIOFX := true
 TARGET_FACE_UNLOCK_SUPPORTED := true
-
-# GAPPS (valid only for GAPPS builds)
-TARGET_SUPPORTS_QUICK_TAP := true
-TARGET_SUPPORTS_CALL_RECORDING := true
-TARGET_INCLUDE_STOCK_ARCORE := false
-TARGET_INCLUDE_LIVE_WALLPAPERS := true
-TARGET_SUPPORTS_GOOGLE_RECORDER := true
-TARGET_INCLUDE_MATLOG := true
 
 PRODUCT_NAME := lineage_garnet
 PRODUCT_DEVICE := garnet
