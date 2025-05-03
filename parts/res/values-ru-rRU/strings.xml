@@ -38,4 +38,12 @@
    <string name="clear_speaker_summary">Проиграть 30-секундный звук, для очистки динамика</string>
    <string name="clear_speaker_description">Запустите эту функцию один или два раза, если обнаружили, что динамик слегка загрязнен пылью. Установите максимальную громкость медиа.\Если динамик сильно загрязнен, запустите эту функцию 2-5 раз, при этом трясите устройством с направленным вниз динамиком</string>
 
+    <!-- GameBar Overlay -->
+    <string name="game_bar_title">GameBar</string>
+    <string name="game_bar_summary">Включить системный оверлей (FPS, Temp и т. д.)</string>
+    <string name="overlay_permission_required">Требуется разрешение на наложение</string>
+    <string name="overlay_permission_granted">Разрешение на наложение предоставлено</string>
+    <string name="overlay_permission_denied">Разрешение на наложение отклонено</string>
+    <string name="game_bar_tile_label">GameBar</string>
+    <string name="game_bar_tile_description">Переключатель GameBar</string>
 </resources>
