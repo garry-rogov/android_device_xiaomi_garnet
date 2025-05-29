@@ -195,8 +195,7 @@ PRODUCT_PACKAGES += \
 
 # Device-specific settings
 PRODUCT_PACKAGES += \
-    XiaomiParts \
-    XiaomiVoIPFix
+    XiaomiParts
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
