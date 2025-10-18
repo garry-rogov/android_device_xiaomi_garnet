@@ -66,6 +66,8 @@ public class GameBarFragment extends PreferenceFragmentCompat {
     private ListPreference mPositionPref;
     private ListPreference mSplitModePref;
     private ListPreference mOverlayFormatPref;
+    private SwitchPreferenceCompat mRamSpeedSwitch;
+    private SwitchPreferenceCompat mRamTempSwitch;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -85,6 +87,8 @@ public class GameBarFragment extends PreferenceFragmentCompat {
         mGpuUsageSwitch     = findPreference("game_bar_gpu_usage_enable");
         mGpuClockSwitch     = findPreference("game_bar_gpu_clock_enable");
         mGpuTempSwitch      = findPreference("game_bar_gpu_temp_enable");
+        mRamSpeedSwitch     = findPreference("game_bar_ram_speed_enable");
+        mRamTempSwitch      = findPreference("game_bar_ram_temp_enable");
 
         mCaptureStartPref   = findPreference("game_bar_capture_start");
         mCaptureStopPref    = findPreference("game_bar_capture_stop");
@@ -109,19 +113,10 @@ public class GameBarFragment extends PreferenceFragmentCompat {
         mSplitModePref      = findPreference("game_bar_split_mode");
         mOverlayFormatPref  = findPreference("game_bar_format");
 
-        Preference appSelectorPref = findPreference("game_bar_app_selector");
-        if (appSelectorPref != null) {
-            appSelectorPref.setOnPreferenceClickListener(pref -> {
-                Intent intent = new Intent(getContext(), GameBarAppSelectorActivity.class);
-                startActivity(intent);
-                return true;
-            });
-        }
-        Preference appRemoverPref = findPreference("game_bar_app_remover");
-        if (appRemoverPref != null) {
-            appRemoverPref.setOnPreferenceClickListener(pref -> {
-                Intent intent = new Intent(getContext(), GameBarAppRemoverActivity.class);
-                startActivity(intent);
+        Preference perAppConfigPref = findPreference("game_bar_per_app_config");
+        if (perAppConfigPref != null) {
+            perAppConfigPref.setOnPreferenceClickListener(pref -> {
+                startActivity(new android.content.Intent(getContext(), GameBarPerAppConfigActivity.class));
                 return true;
             });
         }
@@ -213,6 +208,18 @@ public class GameBarFragment extends PreferenceFragmentCompat {
         if (mGpuTempSwitch != null) {
             mGpuTempSwitch.setOnPreferenceChangeListener((pref, newValue) -> {
                 mGameBar.setShowGpuTemp((boolean) newValue);
+                return true;
+            });
+        }
+        if (mRamSpeedSwitch != null) {
+            mRamSpeedSwitch.setOnPreferenceChangeListener((pref, newValue) -> {
+                mGameBar.setShowRamSpeed((boolean) newValue);
+                return true;
+            });
+        }
+        if (mRamTempSwitch != null) {
+            mRamTempSwitch.setOnPreferenceChangeListener((pref, newValue) -> {
+                mGameBar.setShowRamTemp((boolean) newValue);
                 return true;
             });
         }

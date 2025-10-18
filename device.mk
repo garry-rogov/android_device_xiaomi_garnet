@@ -19,6 +19,9 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
+# Call the MiuiCamera setup
+$(call inherit-product-if-exists, device/xiaomi/miuicamera-garnet/device.mk)
+
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -52,31 +55,22 @@ PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.3-impl:64
 
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.AGMIPC@1.0-service:64 \
-    vendor.qti.hardware.pal@1.0-impl:64
+    vendor.qti.hardware.AGMIPC@1.0-service:64
 
 PRODUCT_PACKAGES += \
     audioadsprpcd:64 \
+    libaudioroute-v34 \
     audio.r_submix.default:64 \
-    audio.usb.default:64 \
-    sound_trigger.primary.parrot:64
+    audio.usb.default:64
 
 PRODUCT_PACKAGES += \
-    agmcap:64 \
-    agmcompressplay:64 \
-    agmplay:64 \
-    libagm_compress_plugin:64 \
-    libagm_mixer_plugin:64 \
-    libagm_pcm_plugin:64 \
-    libagmclient:64 \
-    libagmmixer:64 \
+    libaudioroute-v34 \
     libbatterylistener:64 \
     libfmpal:64 \
-    libpalclient:64 \
+    libldacBT_bco:64 \
     libqcompostprocbundle:64 \
     libqcomvisualizer:64 \
     libqcomvoiceprocessing:64 \
-    libsndcardparser:64 \
     libvolumelistener:64
 
 AUDIO_HAL_DIR := hardware/qcom-caf/sm8450/audio/primary-hal
@@ -118,17 +112,7 @@ PRODUCT_COPY_FILES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     audio.bluetooth.default:64 \
-    android.hardware.bluetooth@1.0.vendor:64 \
-    android.hardware.bluetooth.audio-impl:64 \
-    android.hardware.bluetooth.audio@2.1.vendor:64
-
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.bluetooth_audio@2.1.vendor:64 \
-    vendor.qti.hardware.btconfigstore@1.0.vendor:64 \
-    vendor.qti.hardware.btconfigstore@2.0.vendor:64
-
-PRODUCT_PACKAGES += \
-    com.dsi.ant@1.0.vendor:64
+    android.hardware.bluetooth.audio-impl
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
@@ -141,26 +125,13 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.7.vendor:64 \
-    vendor.qti.hardware.camera.postproc@1.0.vendor:64
-
-PRODUCT_PACKAGES += \
-    libcamera2ndk_vendor:64 \
-    libcamera_metadata.vendor:64 \
-    libexif.vendor:64 \
-    libutilscallstack.vendor:64 \
-    liblz4.vendor:64 \
-    libyuv.vendor:64
+    libcamera2ndk_vendor
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
-
-# Configstore
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.capabilityconfigstore@1.0.vendor:64
 
 # Display
 PRODUCT_PACKAGES += \
@@ -172,25 +143,15 @@ PRODUCT_PACKAGES += \
     init.qti.display_boot.rc:64 \
     init.qti.display_boot.sh:64
 
-PRODUCT_PACKAGES += \
-    libdisplayconfig.system.qti:64 \
-    vendor.display.config@1.11.vendor:64 \
-    vendor.qti.hardware.display.config-V5-ndk:64 \
-    vendor.qti.hardware.display.config-V2-ndk_platform.vendor:64 \
-    vendor.qti.hardware.display.mapper@2.0.vendor:64
-
 PRODUCT_COPY_FILES += \
     hardware/qcom-caf/sm8450/display/config/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml
 
 # Dolby
 $(call inherit-product, hardware/dolby/dolby.mk)
 
-PRODUCT_PACKAGES += \
-    libstagefright_foundation-v33
-
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4.vendor:64 \
+    android.hardware.drm-service.clearkey:64 \
     libcrypto_shim.vendor:64
 
 # Device-specific settings
@@ -219,14 +180,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
-# Gatekeeper
-PRODUCT_PACKAGES += \
-    android.hardware.gatekeeper@1.0.vendor:64
-
 # Graphics
-PRODUCT_PACKAGES += \
-    libgui_vendor:64
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
     frameworks/native/data/etc/android.software.opengles.deqp.level-2021-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.opengles.deqp.level.xml
@@ -238,25 +192,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.vulkan.deqp.level-2021-03-01.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.vulkan.deqp.level.xml
 
 # GPS
-PRODUCT_PACKAGES += \
-    android.hardware.gnss-V1-ndk_platform.vendor:64 \
-    android.hardware.gnss.measurement_corrections@1.1.vendor:64 \
-    android.hardware.gnss.visibility_control@1.0.vendor:64 \
-    android.hardware.gnss@2.1.vendor:64
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.location.gps.xml
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health-service.xiaomi \
-    android.hardware.health-service.xiaomi_recovery
-
-# HIDL
-PRODUCT_PACKAGES += \
-    android.hidl.memory.block@1.0.vendor:64 \
-    libhidltransport.vendor:64 \
-    libhwbinder.vendor:64
+    android.hardware.health-service.qti \
+    android.hardware.health-service.qti_recovery
 
 # Hotword
 PRODUCT_COPY_FILES += \
@@ -288,7 +230,7 @@ PRODUCT_PACKAGES += \
 
 # IR
 PRODUCT_PACKAGES += \
-    android.hardware.ir-service.example
+    android.hardware.ir-service.lineage
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.consumerir.xml
@@ -297,41 +239,19 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/parrot-qrd-snd-card_Button_Jack.kl:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/usr/keylayout/parrot-qrd-snd-card_Button_Jack.kl
 
-# Keymaster
-PRODUCT_PACKAGES += \
-    android.hardware.authsecret@1.0.vendor:64 \
-    android.hardware.keymaster@4.1.vendor:64
-
-PRODUCT_PACKAGES += \
-    libkeymaster_messages.vendor:64
-
 # Keymint
-PRODUCT_PACKAGES += \
-    android.hardware.hardware_keystore.xml:64 \
-    android.hardware.security.keymint-V1-ndk_platform.vendor:64 \
-    android.hardware.security.rkp-V3-ndk.vendor:64 \
-    android.hardware.security.secureclock-V1-ndk_platform.vendor:64 \
-    android.hardware.security.sharedsecret-V1-ndk_platform.vendor:64
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml
 
-# Lights
-PRODUCT_PACKAGES += \
-    android.hardware.light-V1-ndk_platform.vendor
-
 # Lineage Health
+$(call soong_config_set,lineage_health,charging_control_supports_bypass,false)
+
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
 
+$(call soong_config_set,lineage_health,charging_control_supports_bypass,false)
+
 # Media
-PRODUCT_PACKAGES += \
-    libcodec2_hidl@1.0.vendor
-
-PRODUCT_PACKAGES += \
-    libavservices_minijail \
-    libavservices_minijail_vendor
-
 PRODUCT_COPY_FILES += \
     $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.base-arm.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.base-arm.policy \
     $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.base-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.base-arm64.policy \
@@ -339,7 +259,8 @@ PRODUCT_COPY_FILES += \
     $(AUDIO_HAL_DIR)/configs/common/codec2/service/1.0/c2audio.vendor.ext-arm64.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy \
 
 PRODUCT_COPY_FILES += \
-    $(AUDIO_HAL_DIR)/configs/common/codec2/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml
+    $(AUDIO_HAL_DIR)/configs/common/codec2/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml \
+    $(AUDIO_HAL_DIR)/configs/common/media_codecs_vendor_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_vendor_audio.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
@@ -349,28 +270,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.memtrack-service
 
-# Mlipay
-PRODUCT_PACKAGES += \
-    vendor.xiaomi.hardware.mfidoca@1.0.vendor \
-    vendor.xiaomi.hardware.mlipay@1.1.vendor \
-    vendor.xiaomi.hardware.mtdservice@1.3.vendor
-
 # Network
-PRODUCT_PACKAGES += \
-    android.hardware.tetheroffload.config@1.0.vendor:64 \
-    android.hardware.tetheroffload.control@1.1.vendor:64 \
-    android.system.net.netd@1.1.vendor:64
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.ipsec_tunnel_migration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnel_migration.xml \
     frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml
 
 # NFC
 PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.2.vendor:64 \
-    android.hardware.secure_element@1.2.vendor:64 \
-    libchrome.vendor \
-    nqnfcinfo
+    android.hardware.nfc-service.nxp \
+    com.android.nfc_extras
 
 $(foreach sku, CN GL JP, \
     $(eval PRODUCT_COPY_FILES += \
@@ -398,6 +306,7 @@ PRODUCT_PACKAGES += \
     LineageSDKOverlayGarnet \
     LineageSettingsOverlayGarnet \
     LineageSystemUIOverlayGarnet \
+    NfcOverlayGarnet \
     SettingsOverlayGarnet \
     SettingsProviderOverlayGarnetPoco \
     SettingsProviderOverlayGarnetRedmi \
@@ -411,52 +320,39 @@ PRODUCT_PACKAGES += \
     WifiOverlayGarnetRedmiCN \
     WifiOverlayGarnetXIG05
 
-# Overlays - RU translations
-DEVICE_PACKAGE_OVERLAYS += \
-    packages/resources/translations/overlay
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    packages/resources/translations/overlay
+PRODUCT_PACKAGES += \
+    NcmTetheringOverlay
+
+# Partitions
+PRODUCT_PACKAGES += \
+    vendor_bt_firmware_mountpoint \
+    vendor_dsp_mountpoint \
+    vendor_firmware_mnt_mountpoint \
+    vendor_vm-system_mountpoint
+
+# Parts
+PRODUCT_PACKAGES += \
+    XiaomiParts
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service-qti
+    android.hardware.power-service.lineage-libperfmgr \
+    libqti-perfd-client
 
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.perf@2.3.vendor
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/power/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
-# Protobuf
+# Properties
 PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full-3.9.1-vendorcompat:64 \
-    libprotobuf-cpp-lite-3.9.1-vendorcompat:64
+    garnet_sku_properties
 
 # QMI
 PRODUCT_PACKAGES += \
-    libcurl.vendor:64 \
-    libjson:64 \
-    libjsoncpp.vendor:64 \
-    libqti_vndfwk_detect.vendor:64 \
-    libsqlite.vendor:64 \
-    libvndfwk_detect_jni.qti_vendor:64 \
-    vendor.qti.hardware.systemhelper@1.0.vendor:64
-
-# Radio
-PRODUCT_PACKAGES += \
-    android.hardware.radio.config@1.3.vendor:64 \
-    android.hardware.radio.deprecated@1.0.vendor:64 \
-    android.hardware.radio@1.6.vendor:64
-
-PRODUCT_PACKAGES += \
-    librmnetctl:64
-
-# Remove packages
-PRODUCT_PACKAGES += \
-    RemovePackages
+    libvndfwk_detect_jni.qti_vendor # Needed by CNE app
 
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors-service.xiaomi-multihal:64 \
-    android.frameworks.sensorservice@1.0.vendor:64 \
-    libsensorndkbridge:64 \
     sensors.xiaomi.v2:64
 
 PRODUCT_COPY_FILES += \
@@ -471,13 +367,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepdetector.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepdetector.xml
 
-# Servicetracker
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.servicetracker@1.2.vendor:64
-
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
+    hardware/google/interfaces \
+    hardware/google/pixel \
+    hardware/lineage/interfaces/power-libperfmgr \
+    hardware/qcom-caf/common/libqti-perfd-client \
     hardware/xiaomi
 
 # Telephony
@@ -519,6 +415,7 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
+    android.hardware.thermal-service.qti \
     android.hardware.thermal@2.0.vendor
 
 # Touchscreen
@@ -576,17 +473,12 @@ TARGET_BUILD_DEVICE_AS_WEBCAM := true
 # WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
-    android.hardware.wifi.hostapd@1.0.vendor \
     wpa_cli \
     wpa_supplicant \
     wpa_supplicant.conf \
     hostapd \
     hostapd_cli \
-    libwifi-hal-ctrl:64 \
-    libwifi-hal-qcom:64 \
-    libkeystore-engine-wifi-hidl \
-    libkeystore-wifi-hidl \
-    libwifi-hal
+    libwifi-hal-qcom
 
 PRODUCT_PACKAGES += \
     firmware_wlan_mac.bin_symlink \
@@ -598,15 +490,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.wifi.aware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.aware.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.passpoint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.passpoint.xml \
+    frameworks/native/data/etc/android.hardware.wifi.rtt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.rtt.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml
-
-# WiFi Display
-PRODUCT_PACKAGES += \
-    android.media.audio.common.types-V2-cpp \
-    libnl:64 \
-    libwfdaac_vendor
 
 # Vendor
 $(call inherit-product, vendor/xiaomi/garnet/garnet-vendor.mk)

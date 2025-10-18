@@ -5,9 +5,17 @@
 
 soong_namespace {
     imports: [
+        "hardware/google/interfaces",
+        "hardware/google/pixel",
+        "hardware/lineage/interfaces/power-libperfmgr",
+        "hardware/qcom-caf/common/libqti-perfd-client",
         "hardware/xiaomi",
         "vendor/qcom/opensource/commonsys-intf/display",
     ],
+}
+
+cc_library_shared {
+    name: "libldacBT_bco",
 }
 
 install_symlink {
@@ -23,24 +31,3 @@ install_symlink {
     installed_location: "firmware/wlan/qca_cld/adrastea/WCNSS_qcom_cfg.ini",
     symlink_target: "/vendor/etc/wifi/adrastea/WCNSS_qcom_cfg.ini",
 }
-
-prebuilt_hidl_interfaces {
-     name: "hidl_bgservice_interface",
-     interfaces: [
-         "vendor.xiaomi.hardware.bgservice@1.0::IBGService",
-     ],
- }
- 
- prebuilt_hidl_interfaces {
-     name: "hidl_campostproc_interface",
-     interfaces: [
-         "vendor.xiaomi.hardware.campostproc@1.0::IMiPostProcService",
-     ],
- }
- 
- prebuilt_hidl_interfaces {
-     name: "hidl_quickcamera_interface",
-     interfaces: [
-         "vendor.xiaomi.hardware.quickcamera@1.0::IQuickCameraService",
-     ],
- }

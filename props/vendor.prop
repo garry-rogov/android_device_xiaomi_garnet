@@ -39,7 +39,7 @@ vendor.audio.feature.a2dp_offload.enable=true
 vendor.audio.feature.afe_proxy.enable=true
 vendor.audio.feature.battery_listener.enable=true
 vendor.audio.feature.dmabuf.cma.memory.enable=true
-vendor.audio.feature.hfp.enable=true
+vendor.audio.feature.hfp.enable=false
 vendor.audio.feature.kpi_optimize.enable=false
 vendor.audio.feature.compr_voip.enable=true
 vendor.audio.hdr.record.enable=false
@@ -53,6 +53,14 @@ vendor.audio_hal.period_size=192
 vendor.qc2audio.per_frame.flac.dec.enabled=true
 vendor.qc2audio.suspend.enabled=true
 use.voice.path.for.pcm.voip=true
+persist.vendor.btstack.enable.twsplus=true 
+persist.vendor.btstack.enable.twsplussho=true
+af.resampler.quality=7
+ro.audio.usb.period_us=20375
+ro.audio.resampler.psd.stopband=132
+ro.audio.resampler.psd.halflength=960
+ro.audio.resampler.psd.cutoff_percent=98
+ro.audio.resampler.psd.tbwcheat=0
 
 # Bluetooth
 bluetooth.device.class_of_device=90,2,12
@@ -79,14 +87,15 @@ persist.bluetooth.leaudio.allow.multiple.context=false
 persist.bluetooth.leaudio.bypass_allow_list=true
 persist.bluetooth.leaudio.notify.idle.during.call=true
 persist.bluetooth.leaudio_offload.disabled=false
-persist.sys.fflag.override.settings_bluetooth_hearing_aid=true
 persist.vendor.qcom.bluetooth.a2dp_mcast_test.enabled=false
-persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac-aptxadaptiver2
+persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aac-aptx-aptxhd-ldac
 persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled=true
-persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support=true
+persist.vendor.qcom.bluetooth.aptxadaptiver2_1_support=false
+persist.vendor.qcom.bluetooth.aptxadaptiver2_2_support=false
 persist.vendor.qcom.bluetooth.scram.enabled=false
 persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 ro.bluetooth.a2dp_offload.supported=true
+vendor.hw.fm.init=0
 
 # Camera
 camera.disable_zsl_mode=true
@@ -98,6 +107,10 @@ ro.soc.manufacturer=QTI
 
 # Dex2oat
 dalvik.vm.dex2oat64.enabled=true
+dalvik.vm.dex2oat-cpu-set=4,5,6,7
+dalvik.vm.dex2oat-threads=4
+dalvik.vm.image-dex2oat-cpu-set=4,5,6,7
+dalvik.vm.image-dex2oat-threads=4
 
 # Display
 ro.vendor.display.sensortype=2
@@ -119,6 +132,10 @@ vendor.display.enable_hdr10_gpu_target=1
 vendor.display.enable_optimize_refresh=0
 vendor.display.idle_time=0
 vendor.display.vds_allow_hwc=0
+ro.config.avoid_gfx_accel=false
+ro.surface_flinger.support_kernel_idle_timer=true
+debug.sf.enable_hwc_vds=1
+debug.hwui.skia_atrace_enabled=false
 
 # DPM
 persist.vendor.dpm.vndr.feature=1
@@ -141,22 +158,29 @@ vendor.gatekeeper.disable_spu=true
 # Graphics
 debug.sf.auto_latch_unsignaled=0
 debug.sf.disable_client_composition_cache=1
+debug.sf.enable_transaction_tracing=false
+debug.sf.enable_gl_backpressure=0
+debug.sf.hw=0
+debug.sf.predict_hwc_composition_strategy=0
+debug.sf.set_idle_timer_ms=0
+debug.sf.treat_170m_as_sRGB=1
 debug.sf.early.app.duration=16500000
 debug.sf.early.sf.duration=16000000
 debug.sf.earlyGl.app.duration=21000000
 debug.sf.earlyGl.sf.duration=13500000
-debug.sf.enable_gl_backpressure=1
-debug.sf.enable_hwc_vds=1
-debug.sf.hw=0
+debug.sf.enable_adpf_cpu_hint=true
 debug.sf.late.app.duration=20500000
 debug.sf.late.sf.duration=10500000
-debug.sf.predict_hwc_composition_strategy=0
-debug.sf.set_idle_timer_ms=1100
-debug.sf.treat_170m_as_sRGB=1
 debug.sf.use_phase_offsets_as_durations=1
+persist.mm.enable.prefetch=true
 persist.sys.sf.color_mode=0
 persist.sys.sf.color_saturation=1.0
 ro.gfx.driver.1=com.qualcomm.qti.gpudrivers.pineapple.api34
+persist.sys.force_vulkan=1
+persist.sys.purgeable_assets=1
+ro.surface_flinger.set_display_power_timer_ms=1000
+ro.surface_flinger.set_idle_timer_ms=4000
+persist.sys.sf.native_mode=258
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
 ro.opengles.version=196610
@@ -171,6 +195,7 @@ ro.surface_flinger.set_touch_timer_ms=200
 ro.surface_flinger.use_color_management=true
 ro.surface_flinger.use_content_detection_for_refresh_rate=true
 ro.surface_flinger.wcg_composition_dataspace=142671872
+ro.surface_flinger.clear_slots_with_set_layer_buffer=true
 vendor.gralloc.disable_ubwc=0
 
 # Keystore
@@ -183,22 +208,20 @@ debug.sdm.support_writeback=0
 ro.media.xml_variant.profiles=_parrot_v0
 vendor.media.omx=0
 
-# NFC
-ro.vendor.nfc.debounce_field_on=1
-
-# PASR
-vendor.pasr.activemode.enabled=false
-
 # Netflix
 ro.netflix.bsp_rev=Q6450-36256-1
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
+vendor.perf.framepacing.enable=1
 
 # Qcomd
 persist.vendor.qcomsysd.enabled=1
 
 # Radio
+persist.dbg.volte_avail_ovr=1
+persist.dbg.vt_avail_ovr=1
+persist.dbg.wfc_avail_ovr=1
 persist.radio.multisim.config=dsds
 persist.vendor.radio.apm_sim_not_pwdn=1
 persist.vendor.radio.custom_ecc=1
@@ -212,7 +235,10 @@ ro.vendor.radio.build_profile=v-stable
 persist.vendor.rcs.singlereg.feature=1
 
 # Sensors
+ro.vendor.sensors.xiaomi.double_tap=true
+ro.vendor.sensors.xiaomi.single_tap=true
 ro.vendor.sensors.xiaomi.udfps=true
+persist.vendor.sensors.debug.hal=0
 
 # SSR
 persist.vendor.ssr.restart_level=ALL_ENABLE
@@ -233,3 +259,39 @@ persist.vendor.vcb.enable=false
 
 # WLAN
 wifi.aware.interface=wifi-aware0
+
+# Netflix
+vendor.netflix.bsp_rev=Q6450-36256-1
+
+# Logcat spam
+persist.log.tag.android.hardware.power-service-qti=E
+
+# Fling
+ro.min.fling_velocity=160
+ro.max.fling_velocity=20000
+ro.vendor.qti.cgroup_follow.enable=true
+persist.vendor.qti.inputopts.enable=true
+persist.vendor.qti.inputopts.movetouchslop=0.6
+ro.qcom.adreno.qgl.ShaderStorageImageExtendedFormats=0
+
+# HWUI
+ro.hwui.render_ahead=15
+ro.hwui.drop_shadow_cache_size=6
+ro.hwui.gradient_cache_size=1
+ro.hwui.layer_cache_size=48
+ro.hwui.path_cache_size=32
+ro.hwui.r_buffer_cache_size=8
+ro.hwui.text_large_cache_height=1024
+ro.hwui.text_large_cache_width=2048
+ro.hwui.text_small_cache_height=1024
+ro.hwui.text_small_cache_width=1024
+ro.hwui.texture_cache_flushrate=0.4
+ro.hwui.texture_cache_size=72
+debug.hwui.use_hint_manager=true
+debug.hwui.target_cpu_time_percent=30
+debug.hwui.renderer=skiagl
+debug.hwui.show_overdraw=false
+debug.hwui.use_triple_buffering=true
+
+# Performance
+debug.performance.tuning=1

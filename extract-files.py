@@ -41,40 +41,19 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.qti.hardware.qccvndhal@1.0',
         'vendor.qti.imsrtpservice@3.0',
         'vendor.qti.diaghal@1.0',
-        'vendor.qti.hardware.wifidisplaysession@1.0',
         'com.qualcomm.qti.dpm.api@1.0',
     ): lib_fixup_vendor_suffix,
     (
-        'libagm',
-        'libagmmixer',
-        'libar-acdb',
-        'libar-pal',
-        'libats',
-        'liblx-osal',
+        'libagmclient',
         'libwifi-hal-ctrl',
+        'libar-pal',
         'libpalclient',
         'vendor.qti.hardware.pal@1.0-impl',
     ): lib_fixup_remove,
 }
 
 blob_fixups: blob_fixups_user_type = {
-    'system_ext/bin/wfdservice64': blob_fixup()
-        .add_needed('libwfdservice_shim.so'),
-    'system_ext/lib64/libwfdnative.so': blob_fixup()
-        .add_needed('libinput_shim.so'),
-    'system_ext/lib64/libwfdmmsrc_system.so': blob_fixup()
-        .add_needed('libgui_shim.so'),
-    'vendor/lib64/nfc_nci.nqx.default.hw.v1.so': blob_fixup()
-        .add_needed('libbase_shim.so'),
-    'vendor/lib64/libQnnDspV65CalculatorStub.so': blob_fixup()
-        .add_needed('liblog.so'),
-    'vendor/bin/qcc-trd': blob_fixup()
-         .replace_needed('libgrpc++_unsecure.so', 'libgrpc++_unsecure_prebuilt.so'),
-    'vendor/lib64/libcamximageformatutils.so': blob_fixup()
-        .replace_needed('vendor.qti.hardware.display.config-V2-ndk_platform.so', 'vendor.qti.hardware.display.config-V2-ndk.so'),
-    (
         'vendor/bin/hw/android.hardware.security.keymint-service-qti',
-        'vendor/lib/libqtikeymint.so',
         'vendor/lib64/libqtikeymint.so',
     ): blob_fixup()
         .replace_needed(
@@ -93,12 +72,6 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/etc/camera/pureView_parameter.xml': blob_fixup()
         .regex_replace(r'=([0-9]+)>', r'="\1">'),
     (
-        'vendor/etc/init/hw/init.batterysecret.rc',
-        'vendor/etc/init/hw/init.mi_thermald.rc',
-        'vendor/etc/init/hw/init.qti.kernel.rc',
-    ): blob_fixup()
-         .regex_replace(r'on charger', r'on property:init.svc.vendor.charger=running'),
-    (
     'vendor/etc/seccomp_policy/atfwd@2.0.policy',
     'vendor/etc/seccomp_policy/modemManager.policy',
     'vendor/etc/seccomp_policy/sensors-qesdk.policy',
@@ -111,10 +84,16 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/lib64/libcamxcommonutils.so',
     'vendor/lib64/libmialgoengine.so',
     ): blob_fixup().add_needed('libprocessgroup_shim.so'),
+    ('vendor/lib64/libagm.so', 'vendor/lib64/libar-pal.so', 'vendor/lib64/libaudioroute_ext.so', 'vendor/lib64/libkaraokepal.so', 'vendor/lib64/libmcs.so'): blob_fixup()
+        .replace_needed('libaudioroute.so', 'libaudioroute-v34.so'),
     'vendor/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy': blob_fixup()
         .add_line_if_missing('setsockopt: 1'),
     'vendor/etc/media_codecs_parrot_v0.xml': blob_fixup()
         .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
+    'vendor/etc/vintf/manifest/c2_manifest_vendor.xml': blob_fixup()
+        .regex_replace('.+dolby.+\n', ''),
+    'vendor/etc/media_codecs_c2_audio.xml': blob_fixup()
+        .regex_replace('.+media_codecs_dolby_audio.+\n', ''),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
         .add_needed('libhidlbase_shim.so'),
     'vendor/etc/perf/commonresourceconfigs.xml': blob_fixup()
@@ -128,16 +107,24 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/lib64/libgarden_haltests_e2e.so',
     ): blob_fixup()
         .replace_needed(
-            'android.hardware.gnss-V1-ndk_platform.so',
-            'android.hardware.gnss-V1-ndk.so',
-    ),
-    ('vendor/lib64/libalLDC.so', 'vendor/lib64/libalhLDC.so'): blob_fixup()
-        .clear_symbol_version('AHardwareBuffer_allocate')
-        .clear_symbol_version('AHardwareBuffer_describe')
-        .clear_symbol_version('AHardwareBuffer_lock')
-        .clear_symbol_version('AHardwareBuffer_release')
-        .clear_symbol_version('AHardwareBuffer_unlock'),
-    'vendor/lib64/libTrueSight.so': blob_fixup()
+            'libaudioroute.so',
+            'libaudioroute-v34.so'
+        ),
+    (
+        'vendor/lib64/hw/camera.qcom.so',
+        'vendor/lib64/hw/com.qti.chi.override.so',
+        'vendor/lib64/libcamxcommonutils.so',
+        'vendor/lib64/libmialgoengine.so'
+    ): blob_fixup()
+        .add_needed('libprocessgroup_shim.so'),
+    'vendor/lib64/libQnnDspV65CalculatorStub.so': blob_fixup()
+        .add_needed('liblog.so'),
+    (
+        'odm/lib64/libMiVideoFilter.so',
+        'vendor/lib64/libalhLDC.so',
+        'vendor/lib64/libalLDC.so',
+        'vendor/lib64/libTrueSight.so'
+    ): blob_fixup()
         .clear_symbol_version('AHardwareBuffer_allocate')
         .clear_symbol_version('AHardwareBuffer_describe')
         .clear_symbol_version('AHardwareBuffer_lock')

@@ -253,6 +253,14 @@ on boot
     # Xiaomi touch
     chown system system /dev/xiaomi-touch
     chmod 0660 /dev/xiaomi-touch
+    chown system system /sys/class/touch/touch_dev/fod_longpress_gesture_enabled
+    chmod 0660 /sys/class/touch/touch_dev/fod_longpress_gesture_enabled
+    chown system system /sys/class/touch/touch_dev/gesture_single_tap_enabled
+    chmod 0660 /sys/class/touch/touch_dev/gesture_single_tap_enabled
+    chown system system /sys/class/touch/touch_dev/gesture_double_tap_enabled
+    chmod 0660 /sys/class/touch/touch_dev/gesture_double_tap_enabled
+    chown system system /sys/class/touch/touch_dev/gesture_double_tap_state
+    chmod 0664 /sys/class/touch/touch_dev/gesture_double_tap_state
 
 on property:vendor.display.lcd_density=560
    setprop dalvik.vm.heapgrowthlimit 256m
@@ -260,59 +268,13 @@ on property:vendor.display.lcd_density=560
 on property:vendor.display.lcd_density=640
    setprop dalvik.vm.heapgrowthlimit 512m
 
-
-on property:ro.product.name=garnet_eea
-   setprop ro.vendor.miui.support_esim true
-
-on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_global
-   setprop ro.vendor.miui.support_esim true
-
-on property:ro.product.name=garnet_ru
-   setprop ro.vendor.miui.support_esim true
-
-on property:ro.product.name=garnet_tr
-   setprop ro.vendor.miui.support_esim true
-
-on property:ro.product.name=garnet_id
-   setprop ro.vendor.miui.support_esim true
-
-on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_tw_global
-   setprop ro.vendor.miui.support_esim true
-
-on property:ro.product.mod_device=garnet_jp_kd_global
-   setprop ro.vendor.miui.support_esim true
-   setprop ro.vendor.miui.esim_mode 1
-
-on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_lm_cr_global
-   setprop ro.vendor.miui.support_esim true
-
-on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_dc_global
-   setprop ro.vendor.miui.support_esim true
-
-# pre-branch
-on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_pre_global
-   setprop ro.vendor.miui.support_esim true
-
-on property:ro.product.mod_device=garnet_pre_jp_kd_global
-   setprop ro.vendor.miui.support_esim true
-   setprop ro.vendor.miui.esim_mode 1
-
-on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_pre_lm_cr_global
-   setprop ro.vendor.miui.support_esim true
-
-on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_pre_tw_global
-   setprop ro.vendor.miui.support_esim true
-
-on property:ro.product.name=garnet_global && property:ro.product.mod_device=garnet_pre_dc_global
-   setprop ro.vendor.miui.support_esim true
-
 on init && property:ro.boot.mode=charger
     wait_for_prop vendor.all.modules.ready 1
     mount_all /vendor/etc/charger_fw_fstab.qti --early
     wait /sys/kernel/boot_adsp/boot
     write /sys/kernel/boot_adsp/boot 1
 
-on property:init.svc.vendor.charger=running
+on charger
     start vendor.power_off_alarm
     setprop sys.usb.controller a600000.dwc3
     wait /sys/class/udc/${sys.usb.controller}
@@ -423,25 +385,8 @@ on property:sys.shutdown.requested=*
     write /sys/kernel/qcom_rproc/shutdown_in_progress 1
     stop vendor.per_proxy
 
-#on property:vold.decrypt=trigger_restart_framework
-#   start vendor.cnss_diag
-
 on property:ro.debuggable=1
-    start vendor.cnss_diag
     start vendor.tcpdump
-
-on property:persist.vendor.cnss_diag.enable=true
-    start vendor.cnss_diag
-
-on property:persist.vendor.cnss_diag.enable=false
-    stop vendor.cnss_diag
-
-service vendor.cnss_diag /system/vendor/bin/cnss_diag -q -f -t HELIUM -b 2048 --time_interval 11 -s
-   class main
-   user system
-   group system wifi inet sdcard_rw media_rw diag
-   disabled
-   oneshot
 
 service vendor.nv_mac /vendor/bin/nv_mac
     class late_start
@@ -656,3 +601,9 @@ on property:sys.volume.stream.bluetoothsco=*
 on property:sys.boot_completed=1
     # Enable suspend to RAM
     write /sys/power/mem_sleep "deep"
+
+    # Sound Control
+    chown system system /sys/kernel/sound_control/mic_gain
+    chmod 0664 /sys/kernel/sound_control/mic_gain
+    chown system system /sys/kernel/sound_control/headphone_gain
+    chmod 0664 /sys/kernel/sound_control/headphone_gain

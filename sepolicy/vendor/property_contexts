@@ -2,6 +2,10 @@
 persist.vendor.audio.pa.smartpa_type u:object_r:vendor_audio_prop:s0
 vendor.audio.voice.receiver.status u:object_r:vendor_audio_prop:s0
 
+# Bluetooth
+persist.vendor.bluetooth.leaudio.* u:object_r:vendor_bluetooth_prop:s0
+vendor.bluetooth.hfp.* u:object_r:vendor_bluetooth_prop:s0
+
 # Camera
 persist.vendor.EnableP3ColorSpace u:object_r:vendor_camera_p3enable_prop:s0
 vendor.camera.sensor. u:object_r:vendor_camera_sensor_prop:s0
@@ -30,10 +34,6 @@ persist.vendor.sys.pay.widevine u:object_r:vendor_payment_security_prop:s0
 persist.vendor.sys.provision.status u:object_r:vendor_payment_security_prop:s0
 vendor.sys.feature_state u:object_r:vendor_payment_security_prop:s0
 vendor.sys.rpmb_state u:object_r:vendor_payment_security_prop:s0
-
-# NFC
-ro.vendor.nfc. u:object_r:vendor_nfc_mi_prop:s0
-ro.vendor.se. u:object_r:vendor_nfc_mi_prop:s0
 
 # RIL
 ro.vendor.oem.imei u:object_r:vendor_deviceid_prop:s0
