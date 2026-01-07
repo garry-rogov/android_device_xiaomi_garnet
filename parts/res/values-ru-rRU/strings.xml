@@ -149,7 +149,7 @@
     <!-- Split Config -->
     <string name="split_config_title">Конфигурация разделения</string>
     <string name="split_mode_title">Режим разделения</string>
-    <string name="split_mode_summary">Выбрать режим Side-by-Side или Stacked</string>
+    <string name="split_mode_summary">Выбрать режим Бок-о-бок или Сложенный</string>
 
     <!-- Gesture Controls -->
     <string name="gesture_controls_title">Управление жестами оверлея</string>
@@ -191,6 +191,107 @@
     <string name="charge_bypass_summary">Включить питание напрямую, в обход аккумулятора</string>
     <string name="charge_bypass_warning">Внимание: Прямое питание может привести к повышению температуры устройства или повреждению аккумулятора. Используйте с осторожностью.</string>
     <string name="charge_bypass_unavailable">Прямое питание не поддерживается на этом устройстве</string>
+
+    <!-- FPS Overlay -->
+    <string-array name="game_bar_fps_method_entries">
+        <item>Новый API (по умолчанию)</item>
+        <item>Устаревший Sysfs</item>
+    </string-array>
+    <string-array name="game_bar_fps_method_values">
+        <item>new</item>
+        <item>legacy</item>
+    </string-array>
+
+    <!-- Update Interval -->
+    <string-array name="fps_overlay_update_interval_entries">
+        <item>Каждые 500 мс</item>
+        <item>Каждую секунду</item>
+        <item>Каждые 2 секунды</item>
+        <item>Каждые 5 секунд</item>
+    </string-array>
+    <string-array name="fps_overlay_update_interval_values">
+        <item>500</item>
+        <item>1000</item>
+        <item>2000</item>
+        <item>5000</item>
+    </string-array>
+
+    <!-- Position -->
+    <string-array name="fps_overlay_position_entries">
+        <item>Сверху слева</item>
+        <item>Сверху по центру</item>
+        <item>Сверху справа</item>
+        <item>Снизу слева</item>
+        <item>Снизу по центру</item>
+        <item>Снизу справа</item>
+        <item>Пользовательское (перетаскиваемое)</item>
+    </string-array>
+    <string-array name="fps_overlay_position_values">
+        <item>top_left</item>
+        <item>top_center</item>
+        <item>top_right</item>
+        <item>bottom_left</item>
+        <item>bottom_center</item>
+        <item>bottom_right</item>
+        <item>draggable</item>
+    </string-array>
+
+    <!-- Overlay color -->
+    <string-array name="fps_overlay_color_entries">
+        <item>Белый</item>
+        <item>Малиновый</item>
+        <item>Фруктовая смесь</item>
+        <item>Королевский синий</item>
+        <item>Янтарный</item>
+        <item>Сине-зелёный</item>
+        <item>Ярко-фиолетовый</item>
+        <item>Розовый</item>
+    </string-array>
+
+    <string-array name="fps_overlay_color_values">
+        <item>#FFFFFF</item>
+        <item>#DC143C</item>
+        <item>#4CAF50</item>
+        <item>#4169E1</item>
+        <item>#FFBF00</item>
+        <item>#008080</item>
+        <item>#8A2BE2</item>
+        <item>#FF1493</item>
+    </string-array>
+
+    <!-- Overlay format -->
+    <string-array name="game_bar_format_entries">
+        <item>Полный</item>
+        <item>Минимальный</item>
+    </string-array>
+    <string-array name="game_bar_format_values">
+        <item>full</item>
+        <item>minimal</item>
+    </string-array>
+
+    <!-- Split Mode -->
+    <string-array name="game_bar_split_mode_entries">
+        <item>Бок-о-бок</item>
+        <item>Сложенный</item>
+    </string-array>
+    <string-array name="game_bar_split_mode_values">
+        <item>side_by_side</item>
+        <item>stacked</item>
+    </string-array>
+
+    <!-- Long press timeouts -->
+    <string-array name="game_bar_longpress_entries">
+        <item>1 секунда</item>
+        <item>3 секунды</item>
+        <item>5 секунд</item>
+        <item>10 секунд</item>
+    </string-array>
+    <string-array name="game_bar_longpress_values">
+        <item>1000</item>
+        <item>3000</item>
+        <item>5000</item>
+        <item>10000</item>
+    </string-array>
 
     <string name="core_control_title">Управление ядрами</string>
     <string name="core_control_summary">Ручное включение или отключение отдельных ядер ЦП</string>
