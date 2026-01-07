@@ -69,6 +69,124 @@
     <string name="game_bar_tile_label">Игровая панель</string>
     <string name="game_bar_tile_description">Переключить игровой оверлей</string>
 
+    <!-- General -->
+    <string name="game_bar_enable_title">Включить оверлей GameBar</string>
+
+    <!-- Overlay Features -->
+    <string name="overlay_features_title">Функции оверлея</string>
+
+    <string name="fps_overlay_title">Оверлей FPS</string>
+    <string name="fps_overlay_summary">Показывать текущие FPS на экране</string>
+
+    <string name="device_temperature_title">Температура устройства</string>
+    <string name="device_temperature_summary">Показывать температуру устройства (аккумулятора)</string>
+
+    <string name="cpu_usage_title">Загрузка CPU</string>
+    <string name="cpu_usage_summary">Показывать текущую загрузку CPU в процентах</string>
+
+    <string name="cpu_clock_speeds_title">Частоты CPU</string>
+    <string name="cpu_clock_speeds_summary">Показывать текущие частоты CPU для каждого ядра</string>
+
+    <string name="cpu_temperature_title">Температура CPU</string>
+    <string name="cpu_temperature_summary">Показывать температуру CPU (thermal_zone0)</string>
+
+    <string name="ram_usage_title">Использование RAM</string>
+    <string name="ram_usage_summary">Показывать текущее использование RAM в МБ</string>
+
+    <string name="ram_frequency_title">Частота RAM</string>
+    <string name="ram_frequency_summary">Показывать текущую частоту RAM (шина) в ГГц</string>
+
+    <string name="ram_temperature_title">Температура RAM</string>
+    <string name="ram_temperature_summary">Показывать текущую температуру RAM</string>
+
+    <string name="gpu_usage_title">Загрузка GPU</string>
+    <string name="gpu_usage_summary">Показывать текущую загрузку GPU в процентах</string>
+
+    <string name="gpu_clock_speed_title">Частота GPU</string>
+    <string name="gpu_clock_speed_summary">Показывать текущую частоту GPU</string>
+
+    <string name="gpu_temperature_title">Температура GPU</string>
+    <string name="gpu_temperature_summary">Показывать текущую температуру GPU</string>
+
+    <!-- FPS Measurement Method -->
+    <string name="fps_method_title">Метод измерения FPS</string>
+    <string name="fps_method_select_title">Выбрать метод FPS</string>
+    <string name="fps_method_select_summary">Выберите между новым API (по умолчанию) и устаревшим Sysfs</string>
+
+    <!-- Customization -->
+    <string name="customization_title">Настройка</string>
+
+    <string name="text_size_title">Размер текста</string>
+    <string name="text_size_summary">Настроить размер текста оверлея</string>
+
+    <string name="background_transparency_title">Прозрачность фона</string>
+    <string name="background_transparency_summary">Настроить прозрачность фона</string>
+
+    <string name="corner_radius_title">Радиус скругления углов</string>
+    <string name="corner_radius_summary">Настроить степень скругления углов оверлея</string>
+
+    <string name="overlay_padding_title">Отступы оверлея</string>
+    <string name="overlay_padding_summary">Настроить пространство вокруг статистики</string>
+
+    <string name="item_spacing_title">Интервал между строками</string>
+    <string name="item_spacing_summary">Настроить расстояние между строками оверлея</string>
+
+    <string name="update_interval_title">Интервал обновления</string>
+    <string name="update_interval_summary">Установить частоту обновления значений оверлея</string>
+
+    <string name="stat_title_color_title">Цвет заголовков</string>
+    <string name="stat_title_color_summary">Цвет текста (например, "FPS", "Темп", "CPU")</string>
+
+    <string name="stat_value_color_title">Цвет значений</string>
+    <string name="stat_value_color_summary">Цвет числовых значений (например, "29", "32.0°C")</string>
+
+    <string name="overlay_position_title">Позиция оверлея</string>
+    <string name="overlay_position_summary">Выбрать позицию оверлея на экране</string>
+
+    <string name="overlay_format_title">Формат оверлея</string>
+    <string name="overlay_format_summary">Выбрать между полным и минималистичным отображением</string>
+
+    <!-- Split Config -->
+    <string name="split_config_title">Конфигурация разделения</string>
+    <string name="split_mode_title">Режим разделения</string>
+    <string name="split_mode_summary">Выбрать режим Side-by-Side или Stacked</string>
+
+    <!-- Gesture Controls -->
+    <string name="gesture_controls_title">Управление жестами оверлея</string>
+
+    <string name="single_tap_toggle_title">Включить однократное нажатие для переключения</string>
+    <string name="single_tap_toggle_summary">Однократное нажатие для переключения между полным и минималистичным форматом</string>
+
+    <string name="double_tap_capture_title">Включить двойное нажатие для записи</string>
+    <string name="double_tap_capture_summary">Двойное нажатие по оверлею для начала/остановки записи логов</string>
+
+    <string name="long_press_enable_title">Включить долгое нажатие</string>
+    <string name="long_press_enable_summary">Долгое нажатие по оверлею для доступа к настройкам GameBar</string>
+
+    <string name="long_press_duration_title">Продолжительность долгого нажатия</string>
+    <string name="long_press_duration_summary">Установить продолжительность, необходимую для долгого нажатия</string>
+
+    <!-- Capture Logs -->
+    <string name="capture_logs_title">Запись логов</string>
+
+    <string name="start_logging_title">Начать запись</string>
+    <string name="start_logging_summary">Начать запись FPS и данных о производительности в реальном времени</string>
+
+    <string name="stop_logging_title">Остановить запись</string>
+    <string name="stop_logging_summary">Остановить запись FPS и данных о производительности в реальном времени</string>
+
+    <string name="export_log_data_title">Экспорт данных GameBar</string>
+    <string name="export_log_data_summary">Сохранить собранные данные FPS и производительности в файл CSV</string>
+
+    <!-- Per-App GameBar -->
+    <string name="per_app_gamebar_title">GameBar для отдельных приложений</string>
+
+    <string name="auto_enable_gamebar_title">Автоматически включать GameBar для выбранных приложений</string>
+    <string name="auto_enable_gamebar_summary">Если включено, выбранные приложения будут автоматически включать GameBar даже если основной переключатель выключен</string>
+
+    <string name="configure_apps_title">Настроить приложения</string>
+    <string name="configure_apps_summary">Выбрать приложения, которые будут автоматически включать GameBar</string>
+
     <string name="charge_bypass_title">Прямое питание</string>
     <string name="charge_bypass_summary">Включить питание напрямую, в обход аккумулятора</string>
     <string name="charge_bypass_warning">Внимание: Прямое питание может привести к повышению температуры устройства или повреждению аккумулятора. Используйте с осторожностью.</string>

@@ -93,6 +93,124 @@
     <string name="game_bar_tile_label">GameBar</string>
     <string name="game_bar_tile_description">Toggle the game overlay</string>
 
+    <!-- General -->
+    <string name="game_bar_enable_title">Enable GameBar Overlay</string>
+
+    <!-- Overlay Features -->
+    <string name="overlay_features_title">Overlay Features</string>
+
+    <string name="fps_overlay_title">FPS Overlay</string>
+    <string name="fps_overlay_summary">Show current FPS on screen</string>
+
+    <string name="device_temperature_title">Device Temperature</string>
+    <string name="device_temperature_summary">Show device (battery) temperature</string>
+
+    <string name="cpu_usage_title">CPU Usage</string>
+    <string name="cpu_usage_summary">Show current CPU usage percentage</string>
+
+    <string name="cpu_clock_speeds_title">CPU Clock Speeds</string>
+    <string name="cpu_clock_speeds_summary">Show current CPU clock speeds for each core</string>
+
+    <string name="cpu_temperature_title">CPU Temperature</string>
+    <string name="cpu_temperature_summary">Show CPU temperature (thermal_zone0)</string>
+
+    <string name="ram_usage_title">RAM Usage</string>
+    <string name="ram_usage_summary">Show current RAM usage in MB</string>
+
+    <string name="ram_frequency_title">RAM Frequency</string>
+    <string name="ram_frequency_summary">Show current RAM frequency(bus) in GHz</string>
+
+    <string name="ram_temperature_title">RAM Temperature</string>
+    <string name="ram_temperature_summary">Show current RAM temperature</string>
+
+    <string name="gpu_usage_title">GPU Usage</string>
+    <string name="gpu_usage_summary">Show GPU usage percentage</string>
+
+    <string name="gpu_clock_speed_title">GPU Clock Speed</string>
+    <string name="gpu_clock_speed_summary">Show current GPU clock frequency</string>
+
+    <string name="gpu_temperature_title">GPU Temperature</string>
+    <string name="gpu_temperature_summary">Show current GPU temperature</string>
+
+    <!-- FPS Measurement Method -->
+    <string name="fps_method_title">FPS Measurement Method</string>
+    <string name="fps_method_select_title">Select FPS Method</string>
+    <string name="fps_method_select_summary">Choose between the New API method (default) and Legacy Sysfs</string>
+
+    <!-- Customization -->
+    <string name="customization_title">Customization</string>
+
+    <string name="text_size_title">Text Size</string>
+    <string name="text_size_summary">Adjust the size of overlay text</string>
+
+    <string name="background_transparency_title">Background Transparency</string>
+    <string name="background_transparency_summary">Adjust the transparency of the background</string>
+
+    <string name="corner_radius_title">Overlay Corner Radius</string>
+    <string name="corner_radius_summary">Adjust how rounded the overlay corners should be</string>
+
+    <string name="overlay_padding_title">Overlay Padding</string>
+    <string name="overlay_padding_summary">Adjust the space around the stats</string>
+
+    <string name="item_spacing_title">Item Spacing</string>
+    <string name="item_spacing_summary">Adjust spacing between overlay lines</string>
+
+    <string name="update_interval_title">Update Interval</string>
+    <string name="update_interval_summary">Set how often the overlay values update</string>
+
+    <string name="stat_title_color_title">Stat Title Color</string>
+    <string name="stat_title_color_summary">Color for \'FPS\', \'Temp\', \'CPU\' etc. text</string>
+
+    <string name="stat_value_color_title">Stat Value Color</string>
+    <string name="stat_value_color_summary">Color for numeric stats (e.g., \'29\', \'32.0°C\')</string>
+
+    <string name="overlay_position_title">Overlay Position</string>
+    <string name="overlay_position_summary">Select the position of the overlay on screen</string>
+
+    <string name="overlay_format_title">Overlay Format</string>
+    <string name="overlay_format_summary">Choose between Full or Minimal display</string>
+
+    <!-- Split Config -->
+    <string name="split_config_title">Split Config</string>
+    <string name="split_mode_title">Split Mode</string>
+    <string name="split_mode_summary">Choose Side-by-Side or Stacked arrangement</string>
+
+    <!-- Gesture Controls -->
+    <string name="gesture_controls_title">Overlay Gesture Controls</string>
+
+    <string name="single_tap_toggle_title">Enable Single Tap to Toggle</string>
+    <string name="single_tap_toggle_summary">Tap once to switch between full and minimal overlay formats</string>
+
+    <string name="double_tap_capture_title">Enable Double Tap to Capture</string>
+    <string name="double_tap_capture_summary">Double-tap overlay to start/stop capture logs</string>
+
+    <string name="long_press_enable_title">Enable Long Press</string>
+    <string name="long_press_enable_summary">Long-press overlay to access GameBar settings</string>
+
+    <string name="long_press_duration_title">Long Press Duration</string>
+    <string name="long_press_duration_summary">Set the duration required to long-press the overlay</string>
+
+    <!-- Capture Logs -->
+    <string name="capture_logs_title">Capture Logs</string>
+
+    <string name="start_logging_title">Start Logging</string>
+    <string name="start_logging_summary">Begin capturing FPS and performance data in real-time</string>
+
+    <string name="stop_logging_title">Stop Logging</string>
+    <string name="stop_logging_summary">Stop capturing FPS and performance data in real-time</string>
+
+    <string name="export_log_data_title">Export GameBar Log Data</string>
+    <string name="export_log_data_summary">Save the captured FPS and performance data as a CSV file</string>
+
+    <!-- Per-App GameBar -->
+    <string name="per_app_gamebar_title">Per-App GameBar</string>
+
+    <string name="auto_enable_gamebar_title">Auto-Enable GameBar for Selected Apps</string>
+    <string name="auto_enable_gamebar_summary">If turned on, selected apps will auto-enable GameBar even if the main switch is off</string>
+
+    <string name="configure_apps_title">Configure Apps</string>
+    <string name="configure_apps_summary">Choose which apps will auto-enable GameBar</string>
+
     <!-- Charge bypass strings -->
     <string name="charge_bypass_title">Bypass charging</string>
     <string name="charge_bypass_summary">Enable direct charging, bypassing battery</string>
